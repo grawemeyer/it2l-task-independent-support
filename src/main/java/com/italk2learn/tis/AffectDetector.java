@@ -13,7 +13,7 @@ public class AffectDetector {
 		//hard, tricky, complicated
 		for (int i = 0; i< words.size(); i++){
 			String current = words.get(i);
-			if (current.equals("hard")) defaultAffect = Affect.furstration;
+			if (current.equals("hard")) defaultAffect = Affect.furstrationFL;
 			if (current.equals("tricky")) defaultAffect = Affect.furstration;
 			if (current.equals("complicated")) defaultAffect = Affect.furstration;
 		}
