@@ -24,9 +24,9 @@ public class Analysis {
 	}
 
 	public void analyseWords(List<String> currentWords, boolean checkMathsKeywords, TISWrapper wrapper) {
-		for (int i = 0; i < currentWords.size(); i++) {
-			System.out.println(currentWords.get(i) + " ");
-		}
+		//for (int i = 0; i < currentWords.size(); i++) {
+		//	System.out.println(currentWords.get(i) + " ");
+		//}
 		
 		AffectDetector detector = new AffectDetector();
 		int currentAffect = detector.getAffect(currentWords);
@@ -40,6 +40,7 @@ public class Analysis {
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
+			System.out.println("includes maths words: "+includesMathsWords);
 			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
 		}
 		
