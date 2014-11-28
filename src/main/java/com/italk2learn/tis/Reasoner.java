@@ -25,7 +25,7 @@ public class Reasoner {
 		if (!includesMathsWords){
 			//feedback for maths words
 			String message = FeedbackData.mathsReminder1;
-			feedback.sendFeedback(student, message, wrapper);
+			feedback.sendFeedback(student, message, wrapper, includesMathsWords);
 		}
 	}
 

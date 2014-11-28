@@ -19,6 +19,13 @@ public class Feedback {
 		}
 		
 	}
+	
+	public void sendFeedback(StudentModel student, String message,  TISWrapper wrapper, boolean mathsWords){
+		sendFeedback(student, message, wrapper);
+		if (mathsWords){
+			wrapper.setPopUpWindow(true);
+		}
+	}
 
 	public void playSound(){
 		
