@@ -40,7 +40,7 @@ public class Analysis {
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
-			System.out.println("includes maths words: "+includesMathsWords);
+			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
 			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
 		}
 		

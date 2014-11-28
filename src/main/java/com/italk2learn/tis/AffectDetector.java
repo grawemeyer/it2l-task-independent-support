@@ -13,13 +13,13 @@ public class AffectDetector {
 		//hard, tricky, complicated
 		for (int i = 0; i< words.size(); i++){
 			String current = words.get(i);
-			if (current.equals("hard") || current.equals("tricky")) {
+			if (current.equals("hard")) {
 				defaultAffect = Affect.furstrationFL;
-				System.out.println("affect: frustration");
+				System.out.println("::TIS:: affect: frustration");
 			}
 			if (current.equals("complicated")){
 				defaultAffect = Affect.furstration;
-				System.out.println("affect: frustration");
+				System.out.println("::TIS:: affect: frustration");
 			}
 		}
 		
