@@ -14,11 +14,11 @@ public class AffectDetector {
 		for (int i = 0; i< words.size(); i++){
 			String current = words.get(i);
 			if (current.equals("hard")) {
-				defaultAffect = Affect.furstrationFL;
+				defaultAffect = Affect.furstration;
 				System.out.println("::TIS:: affect: frustration");
 			}
 			if (current.equals("complicated")){
-				defaultAffect = Affect.furstration;
+				defaultAffect = Affect.furstrationFL;
 				System.out.println("::TIS:: affect: frustration");
 			}
 		}
