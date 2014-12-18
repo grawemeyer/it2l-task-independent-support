@@ -11,6 +11,10 @@ public class TISWrapper {
 		analysis = new Analysis();
 	}
 	
+	public void sendTDStoTIS(String feedbackMessage, String currentFeedbackType, String previousFeedbackType, boolean followed){
+		
+	}
+	
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
 		analysis.analyseWords(request.getWords(), request.getCheckMathKeywords(), this);
 		
