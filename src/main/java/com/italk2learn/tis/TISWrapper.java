@@ -12,7 +12,7 @@ public class TISWrapper {
 	}
 	
 	public void sendTDStoTIS(String feedbackMessage, String currentFeedbackType, String previousFeedbackType, boolean followed){
-		
+		System.out.println("feedbackMessage: "+feedbackMessage);
 	}
 	
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
