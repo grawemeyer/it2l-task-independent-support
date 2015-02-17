@@ -13,7 +13,7 @@ public class Reasoner {
 			String message= FeedbackData.reflective2;	
 			feedback.sendFeedback(student, message, wrapper);
 		}
-		else if (currentAffect == Affect.furstration){
+		else if (currentAffect == Affect.frustration){
 			String message= FeedbackData.affectBoost1;	
 			feedback.sendFeedback(student, message, wrapper);
 		}
@@ -27,7 +27,7 @@ public class Reasoner {
 			String message = FeedbackData.mathsReminder1;
 			
 			//for demo
-			student.setAffect(Affect.furstration);
+			student.setAffect(Affect.frustration);
 			
 			feedback.sendFeedback(student, message, wrapper);
 		}

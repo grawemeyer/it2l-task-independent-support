@@ -11,7 +11,7 @@ public class Feedback {
 	public void sendFeedback(StudentModel student, String message,  TISWrapper wrapper){
 		int currentAffect = student.getAffect();
 		wrapper.setMessage(message);
-		if ((currentAffect == Affect.furstrationFL) || (currentAffect == Affect.furstration) || (currentAffect == Affect.confusion)){
+		if ((currentAffect == Affect.furstrationFL) || (currentAffect == Affect.frustration) || (currentAffect == Affect.confusion)){
 			wrapper.setPopUpWindow(true);
 		}
 		else {
