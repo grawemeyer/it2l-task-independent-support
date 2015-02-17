@@ -7,14 +7,10 @@ public class Reasoner {
 	public void start(StudentModel student, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		
-		int currentAffect = student.getAffect();
-		if (currentAffect == Affect.furstrationFL){
+		Affect currentAffect = student.getAffect();
+		if (currentAffect.isFrustration()){
 			//display affect boosts or reflective prompt in pop-up window
 			String message= FeedbackData.reflective2;	
-			feedback.sendFeedback(student, message, wrapper);
-		}
-		else if (currentAffect == Affect.frustration){
-			String message= FeedbackData.affectBoost1;	
 			feedback.sendFeedback(student, message, wrapper);
 		}
 	}
@@ -27,7 +23,9 @@ public class Reasoner {
 			String message = FeedbackData.mathsReminder1;
 			
 			//for demo
-			student.setAffect(Affect.frustration);
+			Affect affect = new Affect();
+			affect.setFrustrationValue(0.5);
+			student.setAffect(affect);
 			
 			feedback.sendFeedback(student, message, wrapper);
 		}

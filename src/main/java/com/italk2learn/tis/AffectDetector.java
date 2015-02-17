@@ -3,7 +3,7 @@ package com.italk2learn.tis;
 import java.util.List;
 
 public class AffectDetector {
-	private String[] enjoymentBag = {"easy", "cake", "yes", "good", "enjpoyed", "OK", "interesting"};
+	private String[] flowBag = {"easy", "cake", "yes", "good", "enjpoyed", "OK", "interesting"};
 	private String[] confusionBag = {"get", "hard", "no", "why", "dam", "bugger", "tricky", "don't", "get", "not", "sure", "complicated"};
 	private String[] frustrationBag = {"god", "flip", "flipping", "bloody", "hell"};
 	private String[] surpriseBag={"blimey"};
@@ -58,10 +58,10 @@ public class AffectDetector {
 	}
 
 	
-	public int getAffectFromWords(List<String> words) {
-		int defaultAffect = Affect.enjoyment;
+	public Affect getAffectFromWords(List<String> words) {
+		Affect affect = new Affect();
 		
-		int[] enjoymentValues = checkWordsInBag(words, enjoymentBag);
+		int[] flowValues = checkWordsInBag(words, flowBag);
 		int[] confusionValues = checkWordsInBag(words, confusionBag);
 		int[] frustrationValues = checkWordsInBag(words, frustrationBag);
 		int[] surpriseValues = checkWordsInBag(words, surpriseBag);
@@ -69,38 +69,68 @@ public class AffectDetector {
 		
 		double affectProability = 1/5;
 
-		double enjoymentProbability = caluclateProbabilityForWordsInBag(enjoymentValues);
+		double flowProbability = caluclateProbabilityForWordsInBag(flowValues);
 		double confusionProbability = caluclateProbabilityForWordsInBag(confusionValues);
 		double frustrationProbability = caluclateProbabilityForWordsInBag(frustrationValues);
 		double surpriseProbability = caluclateProbabilityForWordsInBag(surpriseValues);
 		double boredomProbability = caluclateProbabilityForWordsInBag(boredomValues);
 		
-		double probabilityOfWords = (enjoymentProbability * affectProability) + (confusionProbability * affectProability) + 
+		double probabilityOfWords = (flowProbability * affectProability) + (confusionProbability * affectProability) + 
 				(frustrationProbability * affectProability) + (surpriseProbability * affectProability) + (boredomProbability * affectProability);
 		
-		double enjoyment = caluclateProbability(enjoymentProbability, affectProability, probabilityOfWords);
+		double flow = caluclateProbability(flowProbability, affectProability, probabilityOfWords);
 		double confusion = caluclateProbability(confusionProbability, affectProability, probabilityOfWords);
 		double frustration = caluclateProbability(frustrationProbability, affectProability, probabilityOfWords);
 		double surprise = caluclateProbability(surpriseProbability, affectProability, probabilityOfWords);
 		double boredom = caluclateProbability(boredomProbability, affectProability, probabilityOfWords);
 		
+		affect.setFlowValue(flow);
+		affect.setConfusionValue(confusion);
+		affect.setFrustrationValue(frustration);
+		affect.setSurpriseValue(surprise);
+		affect.setBoredomValue(boredom);
 		
-		if ((enjoyment > confusion) && (enjoyment > frustration) && (enjoyment > surprise) && (enjoyment > boredom)){
-			defaultAffect = Affect.enjoyment;
-		}
-		else if ((confusion > enjoyment) && (confusion > frustration) && (confusion > surprise) && (confusion > boredom)){
-			defaultAffect = Affect.confusion;
-		}
-		else if ((frustration > enjoyment) && (frustration > confusion) && (frustration > surprise) && (frustration > boredom)){
-			defaultAffect = Affect.frustration;
-		}
-		else if ((surprise > enjoyment) && (surprise > confusion) && (surprise > frustration) && (surprise > boredom)){
-			defaultAffect = Affect.surprise;
-		}
-		else if ((boredom > enjoyment) && (boredom > confusion) && (boredom > frustration) && (boredom > surprise)){
-			defaultAffect = Affect.boredom;
-		}
-		return defaultAffect;
+		return affect;
 	}
+	
+	public Affect getAffectFromInteraction(boolean feedbackFollowed, boolean messageViewed) {
+		Affect affect = new Affect();
+		
+		double viewedFalseFollowedFalseConfused = 0.23;
+		double viewedFalseFollowedFalseFlow = 0.615;
+		double viewedFalseFollowedFalseFrustrated = 0.15;
+		
+		double viewedFalseFollowedTrueConfused = 0.0;
+		double viewedFalseFollowedTrueFlow = 0.0;
+		double viewedFalseFollowedTrueFrustrated = 0.0;
+		
+		double viewedTrueFollowedFalseConfused = 0.53;
+		double viewedTrueFollowedFalseFlow = 0.45;
+		double viewedTrueFollowedFalseFrustrated = 0.07;
+		
+		double viewedTrueFollowedTrueConfused = 0.23;
+		double viewedTrueFollowedTrueFlow = 0.76;
+		double viewedTrueFollowedTrueFrustrated = 0.01;
+		
+		if (feedbackFollowed && messageViewed){
+			affect.setConfusionValue(viewedTrueFollowedTrueConfused);
+			affect.setFlowValue(viewedTrueFollowedTrueFlow);
+			affect.setFrustrationValue(viewedTrueFollowedTrueFrustrated);
+		}
+		else if (!feedbackFollowed && messageViewed){
+			affect.setConfusionValue(viewedTrueFollowedFalseConfused);
+			affect.setFlowValue(viewedTrueFollowedFalseFlow);
+			affect.setFrustrationValue(viewedTrueFollowedFalseFrustrated);
+		}
+		else if (!feedbackFollowed &&  !messageViewed){
+			affect.setConfusionValue(viewedFalseFollowedFalseConfused);
+			affect.setFlowValue(viewedFalseFollowedFalseFlow);
+			affect.setFrustrationValue(viewedFalseFollowedFalseFrustrated);
+		}
+	
+		return affect;
+	}
+	
+	
 
 }

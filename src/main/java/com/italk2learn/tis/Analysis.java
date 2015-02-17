@@ -29,7 +29,7 @@ public class Analysis {
 		//}
 		
 		AffectDetector detector = new AffectDetector();
-		int currentAffect = detector.getAffectFromWords(currentWords);
+		Affect currentAffect = detector.getAffectFromWords(currentWords);
 		
 		if (student == null) student = new StudentModel();
 		student.setAffect(currentAffect);

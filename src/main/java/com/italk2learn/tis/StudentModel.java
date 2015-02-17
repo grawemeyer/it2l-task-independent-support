@@ -1,17 +1,17 @@
 package com.italk2learn.tis;
 
 public class StudentModel {
-	int currentAffect = Affect.enjoyment;
+	Affect currentAffect = new Affect();
 	
 	public StudentModel(){
 		
 	}
 
-	public void setAffect(int affect) {
+	public void setAffect(Affect affect) {
 		currentAffect = affect;
 	}
 	
-	public int getAffect(){
+	public Affect getAffect(){
 		return currentAffect;
 	}
 }
