@@ -7,7 +7,7 @@ public class Reasoner {
 	public void start(StudentModel student, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		
-		Affect currentAffect = student.getAffect();
+		Affect currentAffect = student.getAffectWords();
 		if (currentAffect.isFrustration()){
 			//display affect boosts or reflective prompt in pop-up window
 			String message= FeedbackData.reflective2;	
@@ -25,7 +25,7 @@ public class Reasoner {
 			//for demo
 			Affect affect = new Affect();
 			affect.setFrustrationValue(0.5);
-			student.setAffect(affect);
+			student.setAffectWords(affect);
 			
 			feedback.sendFeedback(student, message, wrapper);
 		}

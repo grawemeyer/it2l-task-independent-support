@@ -9,7 +9,7 @@ public class Feedback {
 	}
 	
 	public void sendFeedback(StudentModel student, String message,  TISWrapper wrapper){
-		Affect currentAffect = student.getAffect();
+		Affect currentAffect = student.getAffectWords();
 		wrapper.setMessage(message);
 		
 		if (currentAffect.isFrustration() || currentAffect.isConfusion()){

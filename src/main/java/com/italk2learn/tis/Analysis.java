@@ -32,7 +32,7 @@ public class Analysis {
 		Affect currentAffect = detector.getAffectFromWords(currentWords);
 		
 		if (student == null) student = new StudentModel();
-		student.setAffect(currentAffect);
+		student.setAffectWords(currentAffect);
 		
 		Reasoner reasoner = new Reasoner();
 		reasoner.start(student, wrapper);
