@@ -42,9 +42,10 @@ public class AffectDetector {
 			if (currentValue == 1) numberOfWordRecognised +=1;
 		}
 		
-		if (numberOfWordRecognised > 0){
-			result = numberOfWordsInBag/numberOfWordRecognised;
-		}
+		if (numberOfWordRecognised == 1) result = 0.7;
+		else if (numberOfWordRecognised == 2) result = 0.85;
+		else if (numberOfWordRecognised > 2) result = 0.95;
+		
 		return result;
 	}
 	
