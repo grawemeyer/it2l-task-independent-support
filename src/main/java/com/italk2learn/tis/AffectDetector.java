@@ -85,6 +85,11 @@ public class AffectDetector {
 		double surprise = caluclateProbability(surpriseProbability, affectProability, probabilityOfWords);
 		double boredom = caluclateProbability(boredomProbability, affectProability, probabilityOfWords);
 		
+		System.out.println("flow: "+flow);
+		System.out.println("confusion: "+confusion);
+		System.out.println("frustration: "+frustration);
+		System.out.println("surprise: "+surprise);
+		System.out.println("boredom: "+boredom);
 		affect.setFlowValue(flow);
 		affect.setConfusionValue(confusion);
 		affect.setFrustrationValue(frustration);

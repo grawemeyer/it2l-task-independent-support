@@ -1,6 +1,10 @@
 package com.italk2learn.tis;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import ptdFromAmplitudes.CreateWav;
+import ptdFromAmplitudes.PtdFromAmplitudes;
 
 import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 import com.italk2learn.vo.TaskIndependentSupportResponseVO;
@@ -21,6 +25,42 @@ public class Analysis {
 
 	public void sendCurrentUserToSupport(String user) {
 		currentUser = user;
+	}
+	
+	public void analyseSound(byte[] audioByteArray){
+		String wavname;
+        List<byte[]> exampleChunks = new ArrayList<byte[]>();
+        exampleChunks.add(audioByteArray);
+
+        int numberOfChunksToCombine = exampleChunks.size();
+
+        CreateWav wavcreation = new CreateWav();
+        for (int i = 0; i < numberOfChunksToCombine; i++) {
+            wavcreation.addChunk(exampleChunks.get(i));
+        }
+
+        // Initialize ptd classifier:
+        PtdFromAmplitudes ptdAmpl = new PtdFromAmplitudes();
+
+        // get perceived task difficulty (ptd):
+
+        // Create wav from the last x (here numberOfChunksToCombine) chunks (x = seconds/5)
+        wavname = wavcreation.createWavFileMonoOrStereo(numberOfChunksToCombine);
+        
+        int result = ptdAmpl.getPTD(wavname);
+        Affect affectSound = new Affect();
+        affectSound.setPTD(result);
+	}
+	
+	public void analyseInteractionAndSetFeedback(List<String> feedback, boolean followed, boolean viewed){
+		AffectDetector detector = new AffectDetector();
+		Affect interactionAffect = detector.getAffectFromInteraction(followed, viewed);
+		
+		if (student == null) student = new StudentModel();
+		student.setAffectInteraction(interactionAffect);
+		
+		
+		
 	}
 
 	public void analyseWords(List<String> currentWords, boolean checkMathsKeywords, TISWrapper wrapper) {

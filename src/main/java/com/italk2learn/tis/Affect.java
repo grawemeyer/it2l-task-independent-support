@@ -8,8 +8,25 @@ public class Affect {
 	public double confusion = 0;
 	public double frustration = 0;
 	
+	/*
+	 * perceived task difficulty classifier PTD
+	 * 1=overchallenged
+	 * 2=flow
+	 * 3=underchallenged
+	 */
+	int PTD = 0;
+	
+	
 	public Affect(){
 		
+	}
+	
+	public void setPTD(int value){
+		PTD = value;
+	}
+	
+	public int getPTD(){
+		return PTD;
 	}
 	
 	public boolean isFlow(){
