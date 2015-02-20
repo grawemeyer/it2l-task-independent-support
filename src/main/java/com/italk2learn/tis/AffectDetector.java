@@ -3,10 +3,10 @@ package com.italk2learn.tis;
 import java.util.List;
 
 public class AffectDetector {
-	private String[] flowBag = {"easy", "cake", "yes", "good", "enjpoyed", "OK", "interesting"};
-	private String[] confusionBag = {"get", "hard", "no", "why", "dam", "bugger", "tricky", "don't", "get", "not", "sure", "complicated"};
+	private String[] flowBag = {"easy", "cake", "yes", "good", "enjoyed", "OK", "interesting"};
+	private String[] confusionBag = {"get", "hard", "no", "why", "damn", "bugger", "tricky", "don't", "not", "sure", "complicated"};
 	private String[] frustrationBag = {"god", "flip", "flipping", "bloody", "hell"};
-	private String[] surpriseBag={"blimey"};
+	private String[] surpriseBag={"wow"};
 	private String[] boredomBag={"bored","boredom", "boring"};
 	
 	public AffectDetector(){
