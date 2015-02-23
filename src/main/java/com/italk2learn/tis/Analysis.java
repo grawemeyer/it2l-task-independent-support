@@ -50,6 +50,8 @@ public class Analysis {
         int result = ptdAmpl.getPTD(wavname);
         Affect affectSound = new Affect();
         affectSound.setPTD(result);
+        if (student == null) student = new StudentModel();
+		student.setAffectSound(affectSound);
 	}
 	
 	public void analyseInteractionAndSetFeedback(List<String> feedback, boolean followed, boolean viewed){
@@ -58,8 +60,8 @@ public class Analysis {
 		
 		if (student == null) student = new StudentModel();
 		student.setAffectInteraction(interactionAffect);
-		
-		
+		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
+		student.setCombinedAffect(combinedAffect);
 		
 	}
 

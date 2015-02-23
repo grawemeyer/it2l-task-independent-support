@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AffectDetector {
 	private String[] flowBag = {"easy", "cake", "yes", "good", "enjoyed", "OK", "interesting"};
-	private String[] confusionBag = {"get", "hard", "no", "why", "damn", "bugger", "tricky", "don't", "not", "sure", "complicated"};
+	private String[] confusionBag = {"get", "hard", "no", "why", "damn", "bugger", "tricky", "don't", "not", "sure", "complicated", "difficult"};
 	private String[] frustrationBag = {"god", "flip", "flipping", "bloody", "hell"};
 	private String[] surpriseBag={"wow"};
 	private String[] boredomBag={"bored","boredom", "boring"};
@@ -137,6 +137,68 @@ public class AffectDetector {
 		return affect;
 	}
 	
+	public Affect getCombinedAffect(StudentModel student, boolean viewed){
+		Affect affectWords = student.getAffectWords();
+		Affect affectInteraction = student.getAffectInteraction();
+		Affect affectSound = student.getAffectSound();
+		Affect combinedAffect = new Affect();
+		
+		if (affectWords.isFlow()){
+			combinedAffect.setFlowValue(affectWords.getFlowValue());
+		}
+		else if (affectWords.isConfusion()){
+			combinedAffect.setConfusionValue(affectWords.getConfusionValue());
+		}
+		else if (affectWords.isFrustration()){
+			combinedAffect.setFrustrationValue(affectWords.getFrustrationValue());
+		}
+		else if (affectWords.isBoredom()){
+			combinedAffect.setBoredomValue(affectWords.getBoredomValue());
+		}
+		else if (affectWords.isSurprise()){
+			combinedAffect.setSurpriseValue(affectWords.getSurpriseValue());
+		}
+		else if (affectSound.getPTD() == 1){
+			if (affectInteraction.isConfusion()){
+				combinedAffect.setConfusionValue(affectInteraction.getConfusionValue());
+			}
+			else if (affectInteraction.isFlow()){
+				if (viewed){
+					combinedAffect.setFlowValue(affectInteraction.getFlowValue());
+				}
+				else {
+					combinedAffect.setFrustrationValue(0.5);
+				}
+			}
+		}
+		else if (affectSound.getPTD() == 2){
+			if (affectInteraction.isConfusion()){
+				combinedAffect.setConfusionValue(affectInteraction.getConfusionValue());
+			}
+			else if (affectInteraction.isFlow()){
+				if (viewed){
+					combinedAffect.setFlowValue(affectInteraction.getFlowValue());
+				}
+				else {
+					combinedAffect.setFlowValue(affectInteraction.getFlowValue());
+				}
+			}
+		}
+		else if (affectSound.getPTD() == 3){
+			if (affectInteraction.isConfusion()){
+				combinedAffect.setConfusionValue(affectInteraction.getConfusionValue());
+			}
+			else if (affectInteraction.isFlow()){
+				if (viewed){
+					combinedAffect.setFlowValue(affectInteraction.getFlowValue());
+				}
+				else {
+					combinedAffect.setBoredomValue(0.5);
+				}
+			}
+		}
+		return combinedAffect;
+	}
 	
 
 }
