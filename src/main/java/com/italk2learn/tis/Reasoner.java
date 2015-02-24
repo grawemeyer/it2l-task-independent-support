@@ -29,118 +29,121 @@ public class Reasoner {
 		String didacticConceptual = feedback.get(2);
 		String didacticProcedural = feedback.get(3);
 		
-		for (int i = 0; i < feedbackTypes.length; i++){
-			int currentFeedbackType = feedbackTypes[i];
-			if (currentFeedbackType == FeedbackData.affectBoosts) {
-				if (currentAffect.isConfusion()){
-					message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
-					i = feedbackTypes.length;
-				}
-				else if (currentAffect.isFrustration()){
-					message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
-					i = feedbackTypes.length;
-				}
-				else if (currentAffect.isBoredom()){
-					message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
-					i = feedbackTypes.length;
-				}
-			}
-			else if (currentFeedbackType == FeedbackData.nextStep){
-				if (type.equals("NEXT_STEP") || type.equals("PROBLEM_SOLVING")){
-					if (level ==1){
-						if (containsMessage(didacticConceptual)){
-							message = didacticConceptual;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(didacticProcedural)){
-							message = didacticProcedural;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(guidance)){
-							message = guidance;
-							i= feedbackTypes.length;
-						}
-					}
-					else if (level==2){
-						if (containsMessage(didacticProcedural)){
-							message = didacticProcedural;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(didacticConceptual)){
-							message = didacticConceptual;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(guidance)){
-							message = guidance;
-							i= feedbackTypes.length;
-						}
-					}
-					else {
-						if (containsMessage(guidance)){
-							message = guidance;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(didacticConceptual)){
-							message = didacticConceptual;
-							i= feedbackTypes.length;
-						}
-						else if (containsMessage(didacticProcedural)){
-							message = didacticProcedural;
-							i= feedbackTypes.length;
-						}
-					}	
-				}
-			}
-			else if (currentFeedbackType == FeedbackData.problemSolving){
-				if (type.equals("NEXT_STEP") || type.equals("PROBLEM_SOLVING")){
-					if (containsMessage(socratic)){
-						message = socratic;
-						i= feedbackTypes.length;
-					}
-				}
-			}
-			else if  (currentFeedbackType == FeedbackData.reflection){
-				if (type.equals("REFLECTION")){
-					if (containsMessage(socratic)){
-						message = socratic;
-						i= feedbackTypes.length;
-					}
-					else if (containsMessage(guidance)){
-						message = guidance;
-						i= feedbackTypes.length;
-					}
-					else if (containsMessage(didacticConceptual)){
-						message = didacticConceptual;
-						i= feedbackTypes.length;
-					}
-					else if (containsMessage(didacticProcedural)){
-						message = didacticProcedural;
-						i= feedbackTypes.length;
-					}
-				}
-				else {
-					if (currentAffect.isFlow()){
-						message = FeedbackData.reflectiveForflow;
-					}
-					else if (currentAffect.isConfusion()){
-						message = FeedbackData.reflectiveForConfusion;
+		if (type.equals("AFFIRMATION")){
+			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+		}
+		else {
+			for (int i = 0; i < feedbackTypes.length; i++){
+				int currentFeedbackType = feedbackTypes[i];
+				if (currentFeedbackType == FeedbackData.affectBoosts) {
+					if (currentAffect.isConfusion()){
+						message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
+						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						i = feedbackTypes.length;
 					}
 					else if (currentAffect.isFrustration()){
-						message = FeedbackData.reflectiveForFrustration;
+						message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
+						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						i = feedbackTypes.length;
+					}
+					else if (currentAffect.isBoredom()){
+						message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
+						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						i = feedbackTypes.length;
+					}
+				}
+				else if (currentFeedbackType == FeedbackData.nextStep){
+					if (type.equals("NEXT_STEP") || type.equals("PROBLEM_SOLVING")){
+						if (level ==1){
+							message = getFirstMessage (didacticConceptual, didacticProcedural, guidance);
+							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							i= feedbackTypes.length;
+						}
+						else if (level==2){
+							message = getFirstMessage (didacticProcedural, didacticConceptual, guidance);
+							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							i= feedbackTypes.length;
+						}
+						else {
+							message = getFirstMessage (guidance, didacticConceptual, didacticProcedural);
+							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							i= feedbackTypes.length;
+						}	
+					}
+				}
+				else if (currentFeedbackType == FeedbackData.problemSolving){
+					if (type.equals("NEXT_STEP") || type.equals("PROBLEM_SOLVING")){
+						if (containsMessage(socratic)){
+							student.setCurrentFeedbackType(FeedbackData.problemSolving);
+							message = socratic;
+							i= feedbackTypes.length;
+						}
+					}
+				}
+				else if  (currentFeedbackType == FeedbackData.reflection){
+					student.setCurrentFeedbackType(FeedbackData.reflection);
+					if (type.equals("REFLECTION")){
+						message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+						i= feedbackTypes.length;
 					}
 					else {
-						message = getMessageFromArray(FeedbackData.reflectiveTask);
+						if (currentAffect.isFlow()){
+							message = FeedbackData.reflectiveForflow;
+						}
+						else if (currentAffect.isConfusion()){
+							message = FeedbackData.reflectiveForConfusion;
+						}
+						else if (currentAffect.isFrustration()){
+							message = FeedbackData.reflectiveForFrustration;
+						}
+						else {
+							message = getMessageFromArray(FeedbackData.reflectiveTask);
+						}
+						i = feedbackTypes.length;
 					}
-					i = feedbackTypes.length;
-				}
+				}	
 			}
 		}
 		
 		Feedback displayFeedback = new Feedback();
-		displayFeedback.sendFeedback(student, message, wrapper);
+		displayFeedback.sendFeedback(student, message, type, followed, wrapper);
 	}
 	
 	
+	private String getFirstMessage(String first, String second, String third) {
+		String message = "";
+		if (containsMessage(first)){
+			message = first;
+		}
+		else if (containsMessage(second)){
+			message = second;
+		}
+		else if (containsMessage(third)){
+			message = third;
+		}
+		return message;
+	}
+
+
+	private String getFirstMessage(String socratic, String guidance,
+			String didacticConceptual, String didacticProcedural) {
+		String message = "";
+		if (containsMessage(socratic)){
+			message = socratic;
+		}
+		else if (containsMessage(guidance)){
+			message = guidance;
+		}
+		else if (containsMessage(didacticConceptual)){
+			message = didacticConceptual;
+		}
+		else if (containsMessage(didacticProcedural)){
+			message = didacticProcedural;
+		}
+		return message;
+	}
+
+
 	private String getMessageFromArray(String[] messages){
 		String result = messages[0];
 		int length = messages.length;
