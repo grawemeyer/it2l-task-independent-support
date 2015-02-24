@@ -197,6 +197,9 @@ public class AffectDetector {
 				}
 			}
 		}
+		else {
+			combinedAffect = affectInteraction;
+		}
 		return combinedAffect;
 	}
 	

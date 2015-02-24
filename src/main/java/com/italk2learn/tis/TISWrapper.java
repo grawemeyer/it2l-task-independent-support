@@ -14,10 +14,10 @@ public class TISWrapper {
 		analysis = new Analysis();
 	}
 	
-	public void sendTDStoTIS(List<String> feedback, int level, boolean followed, boolean viewed){
+	public void sendTDStoTIS(List<String> feedback, String type, int level, boolean followed, boolean viewed){
 		System.out.println("followed: "+followed+" viewed: "+viewed);
 		analysis.analyseSound(audioStudent);
-		analysis.analyseInteractionAndSetFeedback(feedback, followed, viewed);
+		analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
 	}
 	
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {

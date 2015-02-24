@@ -54,7 +54,7 @@ public class Analysis {
 		student.setAffectSound(affectSound);
 	}
 	
-	public void analyseInteractionAndSetFeedback(List<String> feedback, boolean followed, boolean viewed){
+	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, int level, boolean followed, boolean viewed, TISWrapper wrapper){
 		AffectDetector detector = new AffectDetector();
 		Affect interactionAffect = detector.getAffectFromInteraction(followed, viewed);
 		
@@ -62,6 +62,9 @@ public class Analysis {
 		student.setAffectInteraction(interactionAffect);
 		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
 		student.setCombinedAffect(combinedAffect);
+		
+		Reasoner reasoner = new Reasoner();
+		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
 		
 	}
 
