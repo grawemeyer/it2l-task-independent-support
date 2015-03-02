@@ -22,8 +22,7 @@ public class TISWrapper {
 	}
 	
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
-		analysis.analyseWords(request.getWords(), request.getCheckMathKeywords(), this);
-		
+		analysis.analyseWords(request.getWords(), this);
 	}
 	
 	

@@ -68,11 +68,7 @@ public class Analysis {
 		
 	}
 
-	public void analyseWords(List<String> currentWords, boolean checkMathsKeywords, TISWrapper wrapper) {
-		//for (int i = 0; i < currentWords.size(); i++) {
-		//	System.out.println(currentWords.get(i) + " ");
-		//}
-		
+	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
 		AffectDetector detector = new AffectDetector();
 		Affect currentAffect = detector.getAffectFromWords(currentWords);
 		
@@ -80,18 +76,21 @@ public class Analysis {
 		student.setAffectWords(currentAffect);
 		
 		Reasoner reasoner = new Reasoner();
-		if (!wrapper.getFractionsLabInUse()) {
-			reasoner.startFeedbackForStructuredExercise(student, wrapper);
-		}
 		
+		boolean checkMathsKeywords = false;
+		//check if this needs to be set after a particular time or when student stops
+		if (student.getCurrentFeedbackType() == FeedbackData.reflection){
+			checkMathsKeywords = true;
+		}
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
 			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
-			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
+			reasoner.checkMathsWords(includesMathsWords, wrapper);
 		}
-		
-		
-		
+		else if (!wrapper.getFractionsLabInUse()) {
+			reasoner.startFeedbackForStructuredExercise(student, wrapper);
+		}
+
 	}
 }
