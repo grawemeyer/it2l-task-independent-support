@@ -9,6 +9,7 @@ public class TISWrapper {
 	public String message = "";
 	Analysis analysis = new Analysis();
 	public byte[] audioStudent;
+	private boolean fractionsLabInUse = false;
 	
 	public TISWrapper(){
 		analysis = new Analysis();
@@ -23,6 +24,15 @@ public class TISWrapper {
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
 		analysis.analyseWords(request.getWords(), request.getCheckMathKeywords(), this);
 		
+	}
+	
+	
+	public void setFractionsLabinUse(boolean value){
+		fractionsLabInUse = value;
+	}
+	
+	public boolean getFractionsLabInUse(){
+		return fractionsLabInUse;
 	}
 	
 	public byte[] getAudio(){

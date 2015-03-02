@@ -80,7 +80,9 @@ public class Analysis {
 		student.setAffectWords(currentAffect);
 		
 		Reasoner reasoner = new Reasoner();
-		reasoner.start(student, wrapper);
+		if (!wrapper.getFractionsLabInUse()) {
+			reasoner.startFeedbackForStructuredExercise(student, wrapper);
+		}
 		
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();

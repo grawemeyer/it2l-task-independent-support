@@ -206,13 +206,20 @@ public class Reasoner {
 	}
 
 
-	public void start(StudentModel student, TISWrapper wrapper) {
+	public void startFeedbackForStructuredExercise(StudentModel student, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		
 		Affect currentAffect = student.getAffectWords();
 		if (currentAffect.isFrustration()){
-			//display affect boosts or reflective prompt in pop-up window
-			String message = FeedbackData.reflectiveForFrustration;
+			String message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
+			feedback.sendFeedback(student, message, wrapper);
+		}
+		else if (currentAffect.isConfusion()){
+			String message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
+			feedback.sendFeedback(student, message, wrapper);
+		}
+		else if (currentAffect.isBoredom()){
+			String message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
 			feedback.sendFeedback(student, message, wrapper);
 		}
 	}
