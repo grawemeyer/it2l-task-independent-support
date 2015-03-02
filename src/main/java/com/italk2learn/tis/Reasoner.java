@@ -212,15 +212,15 @@ public class Reasoner {
 		Affect currentAffect = student.getAffectWords();
 		if (currentAffect.isFrustration()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
-			feedback.sendFeedback(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(message, wrapper);
 		}
 		else if (currentAffect.isConfusion()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
-			feedback.sendFeedback(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(message, wrapper);
 		}
 		else if (currentAffect.isBoredom()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
-			feedback.sendFeedback(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(message, wrapper);
 		}
 	}
 
@@ -236,7 +236,7 @@ public class Reasoner {
 			affect.setFrustrationValue(0.5);
 			student.setAffectWords(affect);
 			
-			feedback.sendFeedback(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(message, wrapper);
 		}
 	}
 	

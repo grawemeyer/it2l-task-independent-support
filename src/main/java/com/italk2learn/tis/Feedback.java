@@ -5,16 +5,9 @@ import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 public class Feedback {
 	
 	
-	public void sendFeedback(StudentModel student, String message,  TISWrapper wrapper){
-		Affect currentAffect = student.getAffectWords();
+	public void sendFeedbackInStructuredExercise(String message,  TISWrapper wrapper){
 		wrapper.setMessage(message);
-		
-		if (currentAffect.isFrustration() || currentAffect.isConfusion()){
-			wrapper.setPopUpWindow(true);
-		}
-		else {
-			wrapper.setPopUpWindow(false);
-		}
+		wrapper.setPopUpWindow(true);
 	}
 	
 	public void playSound(){
@@ -22,7 +15,7 @@ public class Feedback {
 	}
 
 	public void sendFeedback(StudentModel student, String message, String type, boolean followed, TISWrapper wrapper) {
-		Affect currentAffect = student.getAffectWords();
+		Affect currentAffect = student.getCombinedAffect();
 		wrapper.setMessage(message);
 		wrapper.setPopUpWindow(false);
 		
@@ -98,7 +91,7 @@ public class Feedback {
 				}
 			}
 		}
-		
+		student.resetAffectWords();
 	}
 
 

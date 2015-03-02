@@ -66,6 +66,10 @@ public class StudentModel {
 		return currentAffectInteraction;
 	}
 
+	public void resetAffectWords(){
+		currentAffectWords = new Affect();
+	}
+	
 	public void setAffectWords(Affect affect) {
 		currentAffectWords = affect;
 	}
