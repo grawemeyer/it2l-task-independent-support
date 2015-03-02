@@ -62,6 +62,7 @@ public class Analysis {
 		student.setAffectInteraction(interactionAffect);
 		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
 		student.setCombinedAffect(combinedAffect);
+		student.setFollowed(followed);
 		
 		Reasoner reasoner = new Reasoner();
 		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
@@ -86,7 +87,7 @@ public class Analysis {
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
 			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
-			reasoner.checkMathsWords(includesMathsWords, wrapper);
+			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
 		}
 		else if (!wrapper.getFractionsLabInUse()) {
 			reasoner.startFeedbackForStructuredExercise(student, wrapper);

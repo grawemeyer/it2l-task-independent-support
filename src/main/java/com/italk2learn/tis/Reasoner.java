@@ -224,12 +224,18 @@ public class Reasoner {
 		}
 	}
 
-	public void checkMathsWords(boolean includesMathsWords, TISWrapper wrapper) {
+	public void checkMathsWords(StudentModel student, boolean includesMathsWords, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		
 		if (!includesMathsWords){
 			String message = FeedbackData.mathsReminder;
-			feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			
+			if (wrapper.getFractionsLabInUse()){
+				feedback.sendFeedback(student, message, "MATHS_VOCAB", student.getFollowed(), wrapper);
+			}
+			else {
+			 feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			}
 		}
 	}
 	

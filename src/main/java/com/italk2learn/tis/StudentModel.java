@@ -24,9 +24,18 @@ public class StudentModel {
 	int[][] surpriseFollowed = {{0,0},{0,0},{0,0},{0,1}};
 	
 	int currentFeedbackType = 0;
+	boolean followed = false;
 	
 	public StudentModel(){
 		
+	}
+	
+	public void setFollowed(boolean value){
+		followed = value;
+	}
+	
+	public boolean getFollowed(){
+		return followed;
 	}
 	
 	public Affect getPreviousAffect(){
