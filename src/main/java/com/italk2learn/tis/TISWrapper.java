@@ -43,7 +43,9 @@ public class TISWrapper {
 	}
 
 	public String getMessage(){
-		return message;
+		String result = message;
+		message = "";
+		return result;
 	}
 	
 	public boolean getPopUpWindow(){
