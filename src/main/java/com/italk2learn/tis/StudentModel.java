@@ -87,6 +87,29 @@ public class StudentModel {
 		return currentAffectWords;
 	}
 	
+	public void addAffectWords(Affect affect){
+		double flow = affect.getFlowValue();
+		double surprise = affect.getSurpriseValue();
+		double boredom = affect.getBoredomValue();
+		double confusion = affect.getConfusionValue();
+		double frustration = affect.getFrustrationValue();
+		
+		double currentFlow = currentAffectWords.getFlowValue();
+		double currentSurprise = currentAffectWords.getSurpriseValue();
+		double currentBoredom = currentAffectWords.getBoredomValue();
+		double currentConfusion = currentAffectWords.getConfusionValue();
+		double currentFrustration = currentAffectWords.getFrustrationValue();
+		
+		Affect addedAffect = new Affect();
+		addedAffect.setFlowValue(flow+currentFlow);
+		addedAffect.setSurpriseValue(surprise+currentSurprise);
+		addedAffect.setBoredomValue(boredom+currentBoredom);
+		addedAffect.setConfusionValue(confusion+currentConfusion);
+		addedAffect.setFrustrationValue(frustration+currentFrustration);
+		
+		currentAffectWords = addedAffect;
+	}
+	
 		
 	public int[][] getFlowFollowedValues() {
 		return flowFollowed;

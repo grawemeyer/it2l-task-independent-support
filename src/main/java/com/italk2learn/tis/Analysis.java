@@ -70,11 +70,15 @@ public class Analysis {
 	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
+		//check if the current student is speaking or not.
+		//if not then check for how long and then send message
+		//else detect affect.
+		
 		AffectDetector detector = new AffectDetector();
 		Affect currentAffect = detector.getAffectFromWords(currentWords);
 		
 		if (student == null) student = new StudentModel();
-		student.setAffectWords(currentAffect);
+		student.addAffectWords(currentAffect);
 		
 		Reasoner reasoner = new Reasoner();
 		

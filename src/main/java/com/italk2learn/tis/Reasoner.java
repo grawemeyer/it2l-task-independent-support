@@ -212,15 +212,15 @@ public class Reasoner {
 		Affect currentAffect = student.getAffectWords();
 		if (currentAffect.isFrustration()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
-			feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
 		}
 		else if (currentAffect.isConfusion()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
-			feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
 		}
 		else if (currentAffect.isBoredom()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
-			feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
 		}
 	}
 
@@ -234,7 +234,7 @@ public class Reasoner {
 				feedback.sendFeedback(student, message, "MATHS_VOCAB", student.getFollowed(), wrapper);
 			}
 			else {
-			 feedback.sendFeedbackInStructuredExercise(message, wrapper);
+			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
 			}
 		}
 	}
