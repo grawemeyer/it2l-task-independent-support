@@ -202,9 +202,27 @@ public class Reasoner {
 		double reflectionMultiplicator = 1/(reflection[0] + reflection[1]);
 		double reflectionTrue = reflection[1] * reflectionMultiplicator;
 		
+		System.out.println("affectBoostsTrue: "+affectBoostsTrue);
+		System.out.println("nextStepTrue: "+nextStepTrue);
+		System.out.println("problemSolvingTrue: "+problemSolvingTrue);
+		System.out.println("reflectionTrue: "+reflectionTrue);
+		
+		
 		double[] valuesForTrueValue = {affectBoostsTrue, nextStepTrue, problemSolvingTrue, reflectionTrue};
+		
+		System.out.println("true values:");
+		testOutputArray(valuesForTrueValue);
+		
 		double[] sortedValues = valuesForTrueValue;
+		
+		System.out.println("sortedValues before:");
+		testOutputArray(valuesForTrueValue);
+		
 		Arrays.sort(sortedValues);
+		
+		System.out.println("sortedValues after:");
+		testOutputArray(valuesForTrueValue);
+		
 		
 		for (int i = 0; i < sortedValues.length; i++){
 			double value = sortedValues[i];
@@ -222,9 +240,23 @@ public class Reasoner {
 			}
 			result[i] = feedbackType;
 		}
+		System.out.println("result: ");
+		testOutputArray(result);
 		return result;
 	}
 
+	private void testOutputArray(int[] values){
+		for (int i = 0; i < values.length; i++){
+			System.out.println(i+" value: "+values[i]);
+		}
+	}
+
+	
+	private void testOutputArray(double[] values){
+		for (int i = 0; i < values.length; i++){
+			System.out.println(i+" value: "+values[i]);
+		}
+	}
 
 	public void startFeedbackForStructuredExercise(StudentModel student, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
