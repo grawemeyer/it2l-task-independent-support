@@ -48,6 +48,21 @@ public class Analysis {
         wavname = wavcreation.createWavFileMonoOrStereo(numberOfChunksToCombine);
         
         int result = ptdAmpl.getPTD(wavname);
+        
+        
+        if (result == -1){
+        	System.out.println("PTD: no result");
+        }
+        else if (result == 1){
+        	System.out.println("PTD: overchallenged");
+        }
+        else if (result == 2){
+        	System.out.println("PTD: flow");
+        }
+        else if (result == 3){
+        	System.out.println("PTD: underchallenged");
+        }
+        		
         Affect affectSound = new Affect();
         affectSound.setPTD(result);
         if (student == null) student = new StudentModel();

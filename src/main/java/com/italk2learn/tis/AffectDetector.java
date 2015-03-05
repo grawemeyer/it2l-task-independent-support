@@ -85,11 +85,11 @@ public class AffectDetector {
 		double surprise = caluclateProbability(surpriseProbability, affectProability, probabilityOfWords);
 		double boredom = caluclateProbability(boredomProbability, affectProability, probabilityOfWords);
 		
-		System.out.println("flow: "+flow);
-		System.out.println("confusion: "+confusion);
-		System.out.println("frustration: "+frustration);
-		System.out.println("surprise: "+surprise);
-		System.out.println("boredom: "+boredom);
+		System.out.println("word flow: "+flow);
+		System.out.println("word confusion: "+confusion);
+		System.out.println("word frustration: "+frustration);
+		System.out.println("word surprise: "+surprise);
+		System.out.println("word boredom: "+boredom);
 		affect.setFlowValue(flow);
 		affect.setConfusionValue(confusion);
 		affect.setFrustrationValue(frustration);
@@ -134,6 +134,11 @@ public class AffectDetector {
 			affect.setFrustrationValue(viewedFalseFollowedFalseFrustrated);
 		}
 	
+		System.out.println("interaction flow: "+affect.getFlowValue());
+		System.out.println("interaction confusion: "+affect.getConfusionValue());
+		System.out.println("interaction frustration: "+affect.getFrustrationValue());
+		System.out.println("interaction surprise: "+affect.getSurpriseValue());
+		System.out.println("interaction boredom: "+affect.getBoredomValue());
 		return affect;
 	}
 	
@@ -200,6 +205,13 @@ public class AffectDetector {
 		else {
 			combinedAffect = affectInteraction;
 		}
+		
+		System.out.println("combined flow: "+combinedAffect.getFlowValue());
+		System.out.println("combined confusion: "+combinedAffect.getConfusionValue());
+		System.out.println("combined frustration: "+combinedAffect.getFrustrationValue());
+		System.out.println("combined surprise: "+combinedAffect.getSurpriseValue());
+		System.out.println("combined boredom: "+combinedAffect.getBoredomValue());
+		
 		return combinedAffect;
 	}
 	
