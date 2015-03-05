@@ -92,6 +92,7 @@ public class Feedback {
 				}
 			}
 		}
+		System.out.println("high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
 	}
 
