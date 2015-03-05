@@ -29,6 +29,26 @@ public class Reasoner {
 		String didacticConceptual = feedback.get(2);
 		String didacticProcedural = feedback.get(3);
 		
+		//test output:
+		System.out.println("TDS type: "+type);
+		for (int i = 0; i < feedbackTypes.length; i++){
+			int currentFeedbackType = feedbackTypes[i];
+			System.out.println(currentFeedbackType);
+			if (currentFeedbackType == FeedbackData.affectBoosts) {
+				System.out.println(i+": AFFECT BOOSTS");
+			}
+			else if (currentFeedbackType == FeedbackData.nextStep){
+				System.out.println(i+": NEXT STEP");
+			}
+			else if (currentFeedbackType == FeedbackData.problemSolving){
+				System.out.println(i+": PROBLEM SOLVING");
+			}
+			else if (currentFeedbackType == FeedbackData.reflection){
+				System.out.println(i+": REFLECTION");
+			}
+		}
+		
+		
 		if (type.equals("AFFIRMATION")){
 			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
 		}
