@@ -200,9 +200,11 @@ public class Reasoner {
 		testOutputArray(reflection);
 		
 		
-		
-		double affectBoostsMultiplicator = 1/(affectBoosts[0] + affectBoosts[1]);
-		double affectBoostsTrue = affectBoosts[1] * affectBoostsMultiplicator;
+		double combinedAffectBoostsValues = affectBoosts[0] + affectBoosts[1];
+		System.out.println("combinedAffectBoostsValues: "+combinedAffectBoostsValues);
+		double affectBoostsMultiplicator = 1/(double) (affectBoosts[0] + affectBoosts[1]);
+		System.out.println("affectBoostsMultiplicator: "+affectBoostsMultiplicator);
+		double affectBoostsTrue = (double) affectBoosts[1] * affectBoostsMultiplicator;
 		
 		double nextStepMultiplicator = 1/(nextStep[0] + nextStep[1]);
 		double nextStepTrue = nextStep[1] * nextStepMultiplicator;
