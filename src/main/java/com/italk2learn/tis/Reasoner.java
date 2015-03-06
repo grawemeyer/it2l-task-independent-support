@@ -190,6 +190,17 @@ public class Reasoner {
 		int[] reflection = feedbackValues[3];
 		int[] result = {FeedbackData.nextStep, FeedbackData.problemSolving, FeedbackData.reflection, FeedbackData.affectBoosts} ;
 		
+		System.out.println("affectBoosts::");
+		testOutputArray(affectBoosts);
+		System.out.println("nextStep::");
+		testOutputArray(nextStep);
+		System.out.println("problemSolving::");
+		testOutputArray(problemSolving);
+		System.out.println("reflection::");
+		testOutputArray(reflection);
+		
+		
+		
 		double affectBoostsMultiplicator = 1/(affectBoosts[0] + affectBoosts[1]);
 		double affectBoostsTrue = affectBoosts[1] * affectBoostsMultiplicator;
 		
@@ -625,10 +636,13 @@ public class Reasoner {
 		System.out.println("surprise: "+currentAffect.getSurpriseValue());
 		
 		if (currentAffect.isFlow()){
+			System.out.println("HIER in FLOW");
 			if (followed){
+				System.out.println("followed");
 				feedbackValues = student.getFlowFollowedValues();
 			}
 			else {
+				System.out.println("not followed");
 				feedbackValues = student.getFlowNotFollowedValues();
 			}
 		}
