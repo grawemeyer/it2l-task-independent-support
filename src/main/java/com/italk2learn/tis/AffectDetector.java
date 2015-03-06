@@ -21,6 +21,7 @@ public class AffectDetector {
 			for (int j = 0; j < bag.length; j++){
 				String affectWord = bag[j];
 				if (currentWord.equals(affectWord)){
+					System.out.println("::: word found: "+affectWord);
 					result[j] = 1;
 				}
 				else {
