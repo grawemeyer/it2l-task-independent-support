@@ -24,6 +24,7 @@ public class AffectDetector {
 				if (currentWord.equals(affectWord)){
 					System.out.println("::: word found: "+affectWord);
 					result[j] = 1;
+					i = words.size();
 				}
 				else {
 					result[j] = 0;
