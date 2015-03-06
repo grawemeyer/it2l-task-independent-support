@@ -233,11 +233,14 @@ public class Reasoner {
 			for (int j=0; j < valuesForTrueValue.length; j++){
 				double unsortedValue = valuesForTrueValue[j];
 				if (value == unsortedValue){
+					
 					if (j==0) feedbackType = FeedbackData.affectBoosts;
 					else if (j==1) feedbackType = FeedbackData.nextStep;
 					else if (j==2) feedbackType = FeedbackData.problemSolving;
 					else if (j==3) feedbackType= FeedbackData.reflection;
+					
 					j = valuesForTrueValue.length;
+					System.out.println(" value found: "+value+" j: "+j+" feedbackType: "+feedbackType);
 				}
 			}
 			result[i] = feedbackType;
