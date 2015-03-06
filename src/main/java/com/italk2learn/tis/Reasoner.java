@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+import org.apache.commons.lang.ArrayUtils;
+
 import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 
 public class Reasoner {
@@ -188,8 +190,8 @@ public class Reasoner {
 		int[] nextStep = feedbackValues[1];
 		int[] problemSolving = feedbackValues[2];
 		int[] reflection = feedbackValues[3];
-		int[] result = {FeedbackData.nextStep, FeedbackData.problemSolving, FeedbackData.reflection, FeedbackData.affectBoosts} ;
-		
+		int[] defaultResult = {FeedbackData.nextStep, FeedbackData.problemSolving, FeedbackData.reflection, FeedbackData.affectBoosts} ;
+		int[] result = new int[4];
 		
 		double combinedAffectBoostsValues = affectBoosts[0] + affectBoosts[1];
 		double affectBoostsMultiplicator = 1/(double) (affectBoosts[0] + affectBoosts[1]);
@@ -233,17 +235,15 @@ public class Reasoner {
 			double value = sortedValues[i];
 			int feedbackType = FeedbackData.nextStep;
 			
-			
-			
 			for (int j=0; j < valuesForTrueValue.length; j++){
 				double unsortedValue = valuesForTrueValue[j];
 				
 				if (value == unsortedValue){
 					
-					if (j==0) feedbackType = FeedbackData.affectBoosts;
-					else if (j==1) feedbackType = FeedbackData.nextStep;
-					else if (j==2) feedbackType = FeedbackData.problemSolving;
-					else if (j==3) feedbackType= FeedbackData.reflection;
+					if ((j==0) && notAlreadyIncluded(result, FeedbackData.affectBoosts)) feedbackType = FeedbackData.affectBoosts;
+					else if ((j==1) && notAlreadyIncluded(result, FeedbackData.nextStep)) feedbackType = FeedbackData.nextStep;
+					else if ((j==2) && notAlreadyIncluded(result, FeedbackData.problemSolving)) feedbackType = FeedbackData.problemSolving;
+					else if ((j==3) && notAlreadyIncluded(result, FeedbackData.reflection)) feedbackType= FeedbackData.reflection;
 					System.out.println(" value found: "+value+" j: "+j+" feedbackType: "+feedbackType);
 					j = valuesForTrueValue.length;
 					
@@ -251,9 +251,18 @@ public class Reasoner {
 			}
 			result[i] = feedbackType;
 		}
+		ArrayUtils.reverse(result);
 		System.out.println("result: ");
 		testOutputArray(result);
 		return result;
+	}
+	
+	private boolean notAlreadyIncluded(int[] result, int feedbackType){
+		for (int i = 0; i < result.length; i++){
+			int elem = result[i];
+			if (elem == feedbackType) return true;
+		}
+		return false;
 	}
 
 	private void testOutputArray(int[] values){
