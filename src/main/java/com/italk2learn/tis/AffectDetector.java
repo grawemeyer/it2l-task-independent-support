@@ -15,12 +15,12 @@ public class AffectDetector {
 	
 	private int[] checkWordsInBag(List<String> words, String[] bag){
 		int[] result = new int[bag.length];
-		
-		for (int i = 0; i< words.size(); i++){
-			String currentWord = words.get(i);
-			currentWord.toLowerCase();
-			for (int j = 0; j < bag.length; j++){
-				String affectWord = bag[j];
+	
+		for (int j = 0; j < bag.length; j++){
+			String affectWord = bag[j];
+			for (int i = 0; i< words.size(); i++){
+				String currentWord = words.get(i);
+				currentWord.toLowerCase();
 				if (currentWord.equals(affectWord)){
 					System.out.println("::: word found: "+affectWord);
 					result[j] = 1;
