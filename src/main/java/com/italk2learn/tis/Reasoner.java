@@ -617,6 +617,12 @@ public class Reasoner {
 		Affect currentAffect = student.getCombinedAffect();
 		int[][] feedbackValues  = {{0,0},{0,0},{0,0},{0,0}};
 		
+		System.out.println("getfeedbackValues");
+		System.out.println("flow: "+currentAffect.getFlowValue());
+		System.out.println("confusion: "+currentAffect.getConfusionValue());
+		System.out.println("frustration: "+currentAffect.getFrustrationValue());
+		System.out.println("boredom: "+currentAffect.getBoredomValue());
+		System.out.println("surprise: "+currentAffect.getSurpriseValue());
 		
 		if (currentAffect.isFlow()){
 			if (followed){
