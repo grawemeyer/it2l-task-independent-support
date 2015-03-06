@@ -190,30 +190,19 @@ public class Reasoner {
 		int[] reflection = feedbackValues[3];
 		int[] result = {FeedbackData.nextStep, FeedbackData.problemSolving, FeedbackData.reflection, FeedbackData.affectBoosts} ;
 		
-		System.out.println("affectBoosts::");
-		testOutputArray(affectBoosts);
-		System.out.println("nextStep::");
-		testOutputArray(nextStep);
-		System.out.println("problemSolving::");
-		testOutputArray(problemSolving);
-		System.out.println("reflection::");
-		testOutputArray(reflection);
-		
 		
 		double combinedAffectBoostsValues = affectBoosts[0] + affectBoosts[1];
-		System.out.println("combinedAffectBoostsValues: "+combinedAffectBoostsValues);
 		double affectBoostsMultiplicator = 1/(double) (affectBoosts[0] + affectBoosts[1]);
-		System.out.println("affectBoostsMultiplicator: "+affectBoostsMultiplicator);
 		double affectBoostsTrue = (double) affectBoosts[1] * affectBoostsMultiplicator;
 		
-		double nextStepMultiplicator = 1/(nextStep[0] + nextStep[1]);
-		double nextStepTrue = nextStep[1] * nextStepMultiplicator;
+		double nextStepMultiplicator = 1/ (double) (nextStep[0] + nextStep[1]);
+		double nextStepTrue = (double) nextStep[1] * nextStepMultiplicator;
 		
-		double problemSolvingMultiplicator = 1/(problemSolving[0] + problemSolving[1]);
-		double problemSolvingTrue = problemSolving[1] * problemSolvingMultiplicator;
+		double problemSolvingMultiplicator = 1/ (double) (problemSolving[0] + problemSolving[1]);
+		double problemSolvingTrue = (double) problemSolving[1] * problemSolvingMultiplicator;
 		
-		double reflectionMultiplicator = 1/(reflection[0] + reflection[1]);
-		double reflectionTrue = reflection[1] * reflectionMultiplicator;
+		double reflectionMultiplicator = 1/(double) (reflection[0] + reflection[1]);
+		double reflectionTrue = (double) reflection[1] * reflectionMultiplicator;
 		
 		System.out.println("affectBoostsTrue: "+affectBoostsTrue);
 		System.out.println("nextStepTrue: "+nextStepTrue);
