@@ -61,16 +61,19 @@ public class Reasoner {
 					if (currentAffect.isConfusion()){
 						message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						System.out.println("::: affectBoostsForConfusion ::: "+message);
 						i = feedbackTypes.length;
 					}
 					else if (currentAffect.isFrustration()){
 						message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						System.out.println("::: affectBoostsForFrustration ::: "+message);
 						i = feedbackTypes.length;
 					}
 					else if (currentAffect.isBoredom()){
 						message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+						System.out.println("::: affectBoostsForBoredom ::: "+message);
 						i = feedbackTypes.length;
 					}
 				}
@@ -79,16 +82,19 @@ public class Reasoner {
 						if (level ==1){
 							message = getFirstMessage (didacticConceptual, didacticProcedural, guidance);
 							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							System.out.println("::: nextStep 1 ::: "+message);
 							i= feedbackTypes.length;
 						}
 						else if (level==2){
 							message = getFirstMessage (didacticProcedural, didacticConceptual, guidance);
 							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							System.out.println("::: nextStep 2 ::: "+message);
 							i= feedbackTypes.length;
 						}
 						else {
 							message = getFirstMessage (guidance, didacticConceptual, didacticProcedural);
 							student.setCurrentFeedbackType(FeedbackData.nextStep);
+							System.out.println("::: nextStep 2 ::: "+message);
 							i= feedbackTypes.length;
 						}	
 					}
@@ -98,6 +104,7 @@ public class Reasoner {
 						if (containsMessage(socratic)){
 							student.setCurrentFeedbackType(FeedbackData.problemSolving);
 							message = socratic;
+							System.out.println("::: problemSolving socratic ::: "+message);
 							i= feedbackTypes.length;
 						}
 					}
@@ -106,19 +113,24 @@ public class Reasoner {
 					student.setCurrentFeedbackType(FeedbackData.reflection);
 					if (type.equals("REFLECTION")){
 						message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+						System.out.println("::: reflection ::: "+message);
 						i= feedbackTypes.length;
 					}
 					else {
 						if (currentAffect.isFlow()){
 							message = FeedbackData.reflectiveForflow;
+							System.out.println("::: reflection flow ::: "+message);
 						}
 						else if (currentAffect.isConfusion()){
 							message = FeedbackData.reflectiveForConfusion;
+							System.out.println("::: reflection confusion ::: "+message);
 						}
 						else if (currentAffect.isFrustration()){
 							message = FeedbackData.reflectiveForFrustration;
+							System.out.println("::: reflection frustration ::: "+message);
 						}
 						else {
+							System.out.println("::: random reflection  ::: "+message);
 							message = getMessageFromArray(FeedbackData.reflectiveTask);
 						}
 						i = feedbackTypes.length;
