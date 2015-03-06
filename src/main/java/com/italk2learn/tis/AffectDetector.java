@@ -70,7 +70,7 @@ public class AffectDetector {
 		int[] surpriseValues = checkWordsInBag(words, surpriseBag);
 		int[] boredomValues = checkWordsInBag(words, boredomBag);
 		
-		double affectProability = 1/5;
+		double affectProability = 1.0/5.0;
 
 		double flowProbability = caluclateProbabilityForWordsInBag(flowValues);
 		double confusionProbability = caluclateProbabilityForWordsInBag(confusionValues);
