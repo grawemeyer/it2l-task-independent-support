@@ -18,6 +18,7 @@ public class AffectDetector {
 		
 		for (int i = 0; i< words.size(); i++){
 			String currentWord = words.get(i);
+			currentWord.toLowerCase();
 			for (int j = 0; j < bag.length; j++){
 				String affectWord = bag[j];
 				if (currentWord.equals(affectWord)){

@@ -260,9 +260,9 @@ public class Reasoner {
 	private boolean notAlreadyIncluded(int[] result, int feedbackType){
 		for (int i = 0; i < result.length; i++){
 			int elem = result[i];
-			if (elem == feedbackType) return true;
+			if (elem == feedbackType) return false;
 		}
-		return false;
+		return true;
 	}
 
 	private void testOutputArray(int[] values){
