@@ -215,23 +215,29 @@ public class Reasoner {
 		System.out.println("true values:");
 		testOutputArray(valuesForTrueValue);
 		
-		double[] sortedValues = valuesForTrueValue;
-		
+		double[] sortedValues = new double[4];
+		System.arraycopy( valuesForTrueValue, 0, sortedValues, 0, valuesForTrueValue.length );
+	
 		System.out.println("sortedValues before:");
 		testOutputArray(valuesForTrueValue);
 		
 		Arrays.sort(sortedValues);
 		
-		System.out.println("sortedValues after:");
+		System.out.println("unsortedValues after:");
 		testOutputArray(valuesForTrueValue);
 		
+		System.out.println("sorted values after:");
+		testOutputArray(sortedValues);
 		
 		for (int i = 0; i < sortedValues.length; i++){
 			double value = sortedValues[i];
 			int feedbackType = FeedbackData.nextStep;
 			
+			
+			
 			for (int j=0; j < valuesForTrueValue.length; j++){
 				double unsortedValue = valuesForTrueValue[j];
+				
 				if (value == unsortedValue){
 					
 					if (j==0) feedbackType = FeedbackData.affectBoosts;
