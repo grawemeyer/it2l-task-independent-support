@@ -707,6 +707,9 @@ public class Reasoner {
 
 	public void checkSpokenWords(List<String> currentWordsFromLastMinute, StudentModel student, TISWrapper wrapper) {
 		double percentageOfNotDetectedWords = getPercentageOfNotDetectedWords(currentWordsFromLastMinute);
+		
+		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
+		
 		if (percentageOfNotDetectedWords > 80){
 			String message = getMessageFromArray(FeedbackData.talkAloud);
 			Feedback feedback = new Feedback();
@@ -731,7 +734,7 @@ public class Reasoner {
 				count +=1.0;
 			}
 		}
-		result = (count/length) *100;
+		result = (double) (count/length) *100.00;
 		return result;
 	}
 
