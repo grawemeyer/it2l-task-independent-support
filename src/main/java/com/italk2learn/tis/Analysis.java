@@ -13,6 +13,7 @@ public class Analysis {
 	boolean includeAffect = true;
 	boolean presentAccordingToAffect = true;
 	List<String> currentWords;
+	List<String> currentWordsFromLastMinute;
 	String currentUser;
 	private StudentModel student;
 
@@ -83,11 +84,21 @@ public class Analysis {
 		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
 		
 	}
+	
+	public void checkIfSpeaking(){
+		System.out.println("!!!!!");
+		System.out.println("!!!!! check if student is speaking !!!!!");
+		System.out.println("!!!!!");
+		//check currentWordsFromLastMinute
+		currentWordsFromLastMinute.clear();
+	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
 		//check if the current student is speaking or not.
 		//if not then check for how long and then send message
 		//else detect affect.
+		
+		currentWordsFromLastMinute.addAll(currentWords);
 		
 		AffectDetector detector = new AffectDetector();
 		Affect currentAffect = detector.getAffectFromWords(currentWords);

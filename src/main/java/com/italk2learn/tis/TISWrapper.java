@@ -1,6 +1,7 @@
 package com.italk2learn.tis;
 
 import java.util.List;
+import java.util.*;
 
 import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 
@@ -13,6 +14,10 @@ public class TISWrapper {
 	
 	public TISWrapper(){
 		analysis = new Analysis();
+		TimerTask timerSpeechTask = new TimerForSpeechCheck();
+		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
+		Timer uploadCheckerTimer = new Timer(true);
+		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 0, 60 * 1000);
 	}
 	
 	public void sendTDStoTIS(List<String> feedback, String type, int level, boolean followed, boolean viewed){
