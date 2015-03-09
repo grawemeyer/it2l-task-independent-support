@@ -107,6 +107,9 @@ public class Analysis {
 		//if not then check for how long and then send message
 		//else detect affect.
 		
+		if (currentWordsFromLastMinute == null){
+			currentWordsFromLastMinute = new ArrayList<String>();
+		}
 		currentWordsFromLastMinute.addAll(currentWords);
 		
 		AffectDetector detector = new AffectDetector();
