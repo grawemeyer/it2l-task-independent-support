@@ -731,7 +731,7 @@ public class Reasoner {
 		for (int i = 0; i< length; i++){
 			String word = listoftWords.get(i);
 			String firstElemString = word.substring(0, 1);
-			if (word.equals("[")){
+			if (firstElemString.equals("[")){
 				count +=1.0;
 			}
 		}
