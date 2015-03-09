@@ -90,7 +90,11 @@ public class Analysis {
 		System.out.println("!!!!! check if student is speaking !!!!!");
 		System.out.println("!!!!!");
 		//check currentWordsFromLastMinute
-		currentWordsFromLastMinute.clear();
+		
+		if (currentWordsFromLastMinute != null){
+			currentWordsFromLastMinute.clear();
+		}
+		
 	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
