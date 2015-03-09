@@ -710,7 +710,7 @@ public class Reasoner {
 		
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
 		
-		if (percentageOfNotDetectedWords > 80){
+		if (percentageOfNotDetectedWords > 60){
 			String message = getMessageFromArray(FeedbackData.talkAloud);
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
@@ -730,7 +730,8 @@ public class Reasoner {
 		//[SILENCE]  [SPEECH]
 		for (int i = 0; i< length; i++){
 			String word = listoftWords.get(i);
-			if (word.equals("[SPEECH]") || word.equals("[SILENCE]")){
+			String firstElemString = word.substring(0, 1);
+			if (word.equals("[")){
 				count +=1.0;
 			}
 		}
