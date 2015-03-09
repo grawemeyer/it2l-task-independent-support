@@ -703,6 +703,36 @@ public class Reasoner {
 		return feedbackValues;
 		
 	}
+
+
+	public void checkSpokenWords(List<String> currentWordsFromLastMinute, StudentModel student, TISWrapper wrapper) {
+		double percentageOfNotDetectedWords = getPercentageOfNotDetectedWords(currentWordsFromLastMinute);
+		if (percentageOfNotDetectedWords > 80){
+			String message = getMessageFromArray(FeedbackData.talkAloud);
+			Feedback feedback = new Feedback();
+			if (wrapper.getFractionsLabInUse()){
+				feedback.sendFeedback(student, message, "TALK_ALOUD", student.getFollowed(), wrapper);
+			}
+			else {
+			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			}
+		}
+		
+	}
 	
+	private double getPercentageOfNotDetectedWords(List<String> listoftWords){
+		double result = 0.0;
+		double count = 0.0;
+		double length = listoftWords.size();
+		//[SILENCE]  [SPEECH]
+		for (int i = 0; i< length; i++){
+			String word = listoftWords.get(i);
+			if (word.equals("[SPEECH]") || word.equals("[SILENCE]")){
+				count +=1.0;
+			}
+		}
+		result = (count/length) *100;
+		return result;
+	}
 
 }

@@ -16,6 +16,7 @@ public class TISWrapper {
 		analysis = new Analysis();
 		TimerTask timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
+		((TimerForSpeechCheck) timerSpeechTask).setWrapper(this);
 		Timer uploadCheckerTimer = new Timer(true);
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 0, 60 * 1000);
 	}
