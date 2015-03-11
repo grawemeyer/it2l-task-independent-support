@@ -38,6 +38,7 @@ public class Feedback {
 		}
 		else {
 			if (currentAffect.isFlow()){
+				System.out.println(" FEEDBACK current affect FLOW and followed: "+followed);
 				if (followed){
 					if (flowFollowedHigh > flowFollowedLow){
 						wrapper.setPopUpWindow(true);
@@ -56,6 +57,7 @@ public class Feedback {
 				}
 			}
 			else if (currentAffect.isConfusion()){
+				System.out.println(" FEEDBACK current affect CONFUSION and followed: "+followed);
 				if (followed){
 					if (confusionFollowedHigh > confusionFollowedLow){
 						wrapper.setPopUpWindow(true);
@@ -74,6 +76,7 @@ public class Feedback {
 				}
 			}
 			else if (currentAffect.isFrustration()){
+				System.out.println(" FEEDBACK current affect FRUSTATION and followed: "+followed);
 				if (followed){
 					if (frustrationFollowedHigh > frustrationFollowedLow){
 						wrapper.setPopUpWindow(true);
@@ -91,8 +94,13 @@ public class Feedback {
 					}
 				}
 			}
+			else {
+				if (currentAffect.isBoredom()) System.out.println(" FEEDBACK current affect BOREDOM and followed: "+followed);
+				if (currentAffect.isSurprise()) System.out.println(" FEEDBACK current affect SURPRISE and followed: "+followed);
+			
+			}
 		}
-		System.out.println("high interruptive: "+wrapper.getPopUpWindow());
+		System.out.println(" FEEDBACK high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
 	}
 
