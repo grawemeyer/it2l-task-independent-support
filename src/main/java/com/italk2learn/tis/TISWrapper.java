@@ -52,6 +52,11 @@ public class TISWrapper {
 	public String getMessage(){
 		String result = message;
 		message = "";
+		return result;
+	}
+	
+	public String getFeedbackType(){
+		String result = feedbackType;
 		feedbackType = "";
 		return result;
 	}
