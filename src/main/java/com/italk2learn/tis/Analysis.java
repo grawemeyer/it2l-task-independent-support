@@ -123,8 +123,8 @@ public class Analysis {
 		
 		boolean checkMathsKeywords = false;
 		//check if this needs to be set after a particular time or when student stops
-		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (!student.getHighMessage()) 
-				&& student.viewedMessage()){
+		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
+				((!student.getHighMessage()) && student.viewedMessage()))){
 			checkMathsKeywords = true;
 		}
 		if (checkMathsKeywords){
