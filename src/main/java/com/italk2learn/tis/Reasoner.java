@@ -13,7 +13,8 @@ public class Reasoner {
 	
 	
 	public void affectiveStateReasoner(StudentModel student, List<String> feedback, String type, int level,  boolean followed, TISWrapper wrapper){
-		updateBN(student, followed);
+		//do not update BN for testing purpose
+		//updateBN(student, followed);
 		
 		Affect currentAffect = student.getCombinedAffect();
 		

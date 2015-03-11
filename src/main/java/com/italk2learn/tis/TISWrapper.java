@@ -74,6 +74,7 @@ public class TISWrapper {
 	}
 	
 	public void setMessage(String value) {
+		System.out.println(":::::: setMessage :::: "+value);
 		message = value;
 	}
 
