@@ -721,6 +721,7 @@ public class Reasoner {
 			}
 			else {
 			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			 student.setCurrentFeedbackType(FeedbackData.talkAloud);
 			}
 		}
 		
