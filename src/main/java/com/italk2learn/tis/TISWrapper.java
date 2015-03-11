@@ -1,6 +1,5 @@
 package com.italk2learn.tis;
 
-import java.util.List;
 import java.util.*;
 
 import com.italk2learn.vo.TaskIndependentSupportRequestVO;
@@ -9,6 +8,7 @@ public class TISWrapper {
 	public boolean popUpWindow = true;
 	public String message = "";
 	public String feedbackType = "";
+	public String affectString = "";
 	Analysis analysis = new Analysis();
 	public byte[] audioStudent;
 	private boolean fractionsLabInUse = false;
@@ -61,6 +61,12 @@ public class TISWrapper {
 		return result;
 	}
 	
+	public String getCurrentAffect(){
+		String result = affectString;
+		affectString = "";
+		return result;
+	}
+	
 	public boolean getPopUpWindow(){
 		return popUpWindow;
 	}
@@ -76,5 +82,11 @@ public class TISWrapper {
 	public void setType(String value){
 		feedbackType = value;
 	}
+
+	public void setCurrentAffect(String value) {
+		affectString = value;
+	}
+	
+	
 	
 }

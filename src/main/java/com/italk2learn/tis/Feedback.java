@@ -14,6 +14,33 @@ public class Feedback {
 	public void playSound(){
 		
 	}
+	
+	public String getCurrentAffectValueAsString(Affect currentAffect){
+		String confusion = "CONFUSION";
+		String frustration = "FRUSTRATION";
+		String boredom = "BOREDOM";
+		String flow = "FLOW";
+		String surprise = "SURPRISE";
+		String result = flow;
+		
+		if (currentAffect.isFlow()){
+			result = flow;
+		}
+		else if (currentAffect.isConfusion()){
+			result = confusion;
+		}
+		else if (currentAffect.isFrustration()){
+			result = frustration;
+		}
+		else if (currentAffect.isBoredom()){
+			result = boredom;
+		}
+		else if (currentAffect.isSurprise()){
+			result = surprise;
+		}
+		
+		return result;
+	}
 
 	public void sendFeedback(StudentModel student, String message, String type, boolean followed, TISWrapper wrapper) {
 		Affect currentAffect = student.getCombinedAffect();
@@ -105,6 +132,8 @@ public class Feedback {
 		student.resetAffectWords();
 		wrapper.setType(type);
 		wrapper.setMessage(message);
+		String affectString = getCurrentAffectValueAsString(currentAffect);
+		wrapper.setCurrentAffect(affectString);
 	}
 
 

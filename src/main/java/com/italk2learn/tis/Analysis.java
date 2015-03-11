@@ -101,7 +101,26 @@ public class Analysis {
 		
 	}
 	
-	
+	private void printCurrentFeedbackType(){
+		if (student.getCurrentFeedbackType() == FeedbackData.reflection){
+			System.out.println("last feedback REFLECTION");
+		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.affectBoosts){
+			System.out.println("last feedback AFFECT BOOSTS");
+		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.nextStep){
+			System.out.println("last feedback NEXT STEP");
+		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.problemSolving){
+			System.out.println("last feedback PROBLEM SOLVING");
+		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.mathsVocabular){
+			System.out.println("last feedback MATHS VOCAB");
+		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.talkAloud){
+			System.out.println("last feedback TALK ALOUD");
+		}
+	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
 		//check if the current student is speaking or not.
@@ -122,6 +141,9 @@ public class Analysis {
 		Reasoner reasoner = new Reasoner();
 		
 		boolean checkMathsKeywords = false;
+		
+		printCurrentFeedbackType();
+		
 		//check if this needs to be set after a particular time or when student stops
 		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
 				((!student.getHighMessage()) && student.viewedMessage()))){
