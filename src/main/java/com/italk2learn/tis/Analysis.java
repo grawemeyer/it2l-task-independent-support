@@ -127,6 +127,9 @@ public class Analysis {
 				((!student.getHighMessage()) && student.viewedMessage()))){
 			checkMathsKeywords = true;
 		}
+		else {
+			checkMathsKeywords = false;
+		}
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
