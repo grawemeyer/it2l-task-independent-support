@@ -23,6 +23,8 @@ public class TISWrapper {
 	}
 	
 	public void sendTDStoTIS(List<String> feedback, String type, int level, boolean followed, boolean viewed){
+		System.out.println("::: TDStoTIS :::");
+		System.out.println("::: feedback type ::: "+type);
 		System.out.println("followed: "+followed+" viewed: "+viewed);
 		analysis.analyseSound(audioStudent);
 		analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
