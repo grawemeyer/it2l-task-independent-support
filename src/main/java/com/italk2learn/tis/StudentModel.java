@@ -61,6 +61,8 @@ public class StudentModel {
 	}
 	
 	public void setCurrentFeedbackType(int type){
+		System.out.println("::: student model ::: ");
+		System.out.println("::: setCurrentFeedbackType ::: "+type);
 		currentFeedbackType = type;
 	}
 	
