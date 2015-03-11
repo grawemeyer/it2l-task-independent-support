@@ -8,6 +8,7 @@ import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 public class TISWrapper {
 	public boolean popUpWindow = true;
 	public String message = "";
+	public String feedbackType = "";
 	Analysis analysis = new Analysis();
 	public byte[] audioStudent;
 	private boolean fractionsLabInUse = false;
@@ -51,6 +52,7 @@ public class TISWrapper {
 	public String getMessage(){
 		String result = message;
 		message = "";
+		feedbackType = "";
 		return result;
 	}
 	
@@ -64,6 +66,10 @@ public class TISWrapper {
 
 	public void setPopUpWindow(boolean value){
 		popUpWindow = value;
+	}
+	
+	public void setType(String value){
+		feedbackType = value;
 	}
 	
 }

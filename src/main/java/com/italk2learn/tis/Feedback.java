@@ -17,7 +17,7 @@ public class Feedback {
 
 	public void sendFeedback(StudentModel student, String message, String type, boolean followed, TISWrapper wrapper) {
 		Affect currentAffect = student.getCombinedAffect();
-		wrapper.setMessage(message);
+		
 		wrapper.setPopUpWindow(false);
 		
 		double flowNotFollowedHigh = 0.8;
@@ -102,6 +102,8 @@ public class Feedback {
 		}
 		System.out.println(" FEEDBACK high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
+		wrapper.setType(type);
+		wrapper.setMessage(message);
 	}
 
 
