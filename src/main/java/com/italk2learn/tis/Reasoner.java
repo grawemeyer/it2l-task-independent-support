@@ -316,6 +316,7 @@ public class Reasoner {
 			
 			if (wrapper.getFractionsLabInUse()){
 				feedback.sendFeedback(student, message, "MATHS_VOCAB", student.getFollowed(), wrapper);
+				student.setCurrentFeedbackType(FeedbackData.mathsVocabular);
 			}
 			else {
 			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
@@ -711,10 +712,11 @@ public class Reasoner {
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
 		
 		if (percentageOfNotDetectedWords > 50){
-			String message = getMessageFromArray(FeedbackData.talkAloud);
+			String message = getMessageFromArray(FeedbackData.talkAloudMessage);
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
 				feedback.sendFeedback(student, message, "TALK_ALOUD", student.getFollowed(), wrapper);
+				student.setCurrentFeedbackType(FeedbackData.talkAloud);
 			}
 			else {
 			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);

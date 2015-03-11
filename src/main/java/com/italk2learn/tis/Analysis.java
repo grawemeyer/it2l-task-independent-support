@@ -79,6 +79,7 @@ public class Analysis {
 		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
 		student.setCombinedAffect(combinedAffect);
 		student.setFollowed(followed);
+		student.setViewedMessage(viewed);
 		
 		Reasoner reasoner = new Reasoner();
 		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
@@ -122,7 +123,8 @@ public class Analysis {
 		
 		boolean checkMathsKeywords = false;
 		//check if this needs to be set after a particular time or when student stops
-		if (student.getCurrentFeedbackType() == FeedbackData.reflection){
+		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (!student.getHighMessage()) 
+				&& student.viewedMessage()){
 			checkMathsKeywords = true;
 		}
 		if (checkMathsKeywords){

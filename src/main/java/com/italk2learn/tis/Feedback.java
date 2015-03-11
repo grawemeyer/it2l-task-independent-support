@@ -100,6 +100,7 @@ public class Feedback {
 			
 			}
 		}
+		student.setHighMessage(wrapper.getPopUpWindow());
 		System.out.println(" FEEDBACK high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
 		wrapper.setType(type);

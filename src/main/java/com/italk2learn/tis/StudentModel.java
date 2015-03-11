@@ -25,9 +25,27 @@ public class StudentModel {
 	
 	int currentFeedbackType = 0;
 	boolean followed = false;
+	boolean highMessage = false;
+	boolean viewed = false;
 	
 	public StudentModel(){
 		
+	}
+	
+	public void setViewedMessage(boolean value){
+		viewed = value;
+	}
+	
+	public boolean viewedMessage(){
+		return viewed;
+	}
+	
+	public void setHighMessage(boolean value){
+		highMessage = value;
+	}
+	
+	public boolean getHighMessage(){
+		return highMessage;
 	}
 	
 	public void setFollowed(boolean value){
