@@ -138,11 +138,26 @@ public class Reasoner {
 				}	
 			}
 		}
-		
+		String newType = getTypeFromFeedbackType(student);
 		Feedback displayFeedback = new Feedback();
-		displayFeedback.sendFeedback(student, message, type, followed, wrapper);
+		displayFeedback.sendFeedback(student, message, newType, followed, wrapper);
 	}
 	
+	
+	private String getTypeFromFeedbackType(StudentModel student){
+		int type = student.getCurrentFeedbackType();
+		String result = "";
+	
+		if (type == FeedbackData.affectBoosts) result = "AFFECT_BOOSTS";
+		else if (type == FeedbackData.nextStep) result = "NEXT_STEP";
+		else if (type == FeedbackData.problemSolving) result = "PROBLEM_SOLVING";
+		else if (type == FeedbackData.reflection) result = "REFLECTION";
+		else if (type == FeedbackData.mathsVocabular) result = "MATHS_VOCAB";
+		else if (type == FeedbackData.talkAloud) result = "TALK_ALOUD";
+		
+		return result;
+		
+	}
 	
 	private String getFirstMessage(String first, String second, String third) {
 		String message = "";
@@ -294,33 +309,44 @@ public class Reasoner {
 		Feedback feedback = new Feedback();
 		
 		Affect currentAffect = student.getAffectWords();
+		student.setCurrentFeedbackType(FeedbackData.affectBoosts);
+		String type = getTypeFromFeedbackType(student);
 		if (currentAffect.isFrustration()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
-			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 		else if (currentAffect.isConfusion()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
-			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 		else if (currentAffect.isBoredom()){
 			String message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
-			feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 	}
 
 	public void checkMathsWords(StudentModel student, boolean includesMathsWords, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
+		System.out.println(":::: checkMathsWords ::: ");
 		
 		if (!includesMathsWords){
 			String message = FeedbackData.mathsReminder;
 			
 			if (wrapper.getFractionsLabInUse()){
-				feedback.sendFeedback(student, message, "MATHS_VOCAB", student.getFollowed(), wrapper);
+				
+				System.out.println(":::: setCurrentFeedbackType mathsVocabular :::: ");
 				student.setCurrentFeedbackType(FeedbackData.mathsVocabular);
+				String type = getTypeFromFeedbackType(student);
+				feedback.sendFeedback(student, message, type, student.getFollowed(), wrapper);
+				
 			}
 			else {
-			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
+			 
+			 System.out.println(":::: setCurrentFeedbackType mathsVocabular :::: ");
 			 student.setCurrentFeedbackType(FeedbackData.mathsVocabular);
+			 String type = getTypeFromFeedbackType(student);
+			 feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
+			 
 			}
 		}
 	}
@@ -716,12 +742,14 @@ public class Reasoner {
 			String message = getMessageFromArray(FeedbackData.talkAloudMessage);
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
-				feedback.sendFeedback(student, message, "TALK_ALOUD", student.getFollowed(), wrapper);
 				student.setCurrentFeedbackType(FeedbackData.talkAloud);
+				String type = getTypeFromFeedbackType(student);
+				feedback.sendFeedback(student, message, type, student.getFollowed(), wrapper);
 			}
 			else {
-			 feedback.sendFeedbackInStructuredExercise(student, message, wrapper);
 			 student.setCurrentFeedbackType(FeedbackData.talkAloud);
+			 String type = getTypeFromFeedbackType(student);
+			 feedback.sendFeedbackInStructuredExercise(student, message, type,  wrapper);
 			}
 		}
 		

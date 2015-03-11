@@ -6,7 +6,7 @@ public class FeedbackData {
 	public static int nextStep=2;
 	public static int problemSolving=3;
 	public static int reflection=4;
-	public static int mathsVocabular = 5;
+	public static int mathsVocabular= 5;
 	public static int talkAloud = 6;
 
 	public static final String[] talkAloudMessage = {"Please explain what you are doing.",

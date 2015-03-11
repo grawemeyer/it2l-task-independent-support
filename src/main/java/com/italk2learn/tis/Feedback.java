@@ -5,9 +5,17 @@ import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 public class Feedback {
 	
 	
-	public void sendFeedbackInStructuredExercise(StudentModel student, String message,  TISWrapper wrapper){
+	public void sendFeedbackInStructuredExercise(StudentModel student, String message,  String type, TISWrapper wrapper){
 		wrapper.setMessage(message);
 		wrapper.setPopUpWindow(true);
+		
+		student.setHighMessage(wrapper.getPopUpWindow());
+		wrapper.setType(type);
+		wrapper.setMessage(message);
+		Affect currentAffect = student.getCombinedAffect();
+		String affectString = getCurrentAffectValueAsString(currentAffect);
+		wrapper.setCurrentAffect(affectString);
+		
 		student.resetAffectWords();
 	}
 	
