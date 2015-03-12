@@ -27,9 +27,18 @@ public class StudentModel {
 	boolean followed = false;
 	boolean highMessage = false;
 	boolean viewed = false;
+	boolean atTheEnd = false;
 	
 	public StudentModel(){
 		
+	}
+	
+	public void setAtTheEnd(boolean value){
+		atTheEnd = value;
+	}
+	
+	public boolean areWeAtTheEnd(){
+		return atTheEnd;
 	}
 	
 	public void setViewedMessage(boolean value){

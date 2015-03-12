@@ -20,6 +20,12 @@ public class Analysis {
 	public Analysis() {
 	}
 
+	public void resetVariablesForNewExercise(TISWrapper wrapper){
+		student.setAtTheEnd(false);
+		wrapper.setMessage("");
+		wrapper.setType("");
+	}
+	
 	public void startSupport(boolean start) {
 		student = new StudentModel();
 	}
@@ -95,7 +101,7 @@ public class Analysis {
 		System.out.println("!!!!!");
 		//check currentWordsFromLastMinute
 		
-		if (currentWordsFromLastMinute != null){
+		if ((currentWordsFromLastMinute != null) && (!student.areWeAtTheEnd())){
 			Reasoner reasoner = new Reasoner();
 			if (student == null) student = new StudentModel();
 			reasoner.checkSpokenWords(currentWordsFromLastMinute, student, wrapper);

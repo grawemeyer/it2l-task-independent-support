@@ -744,6 +744,7 @@ public class Reasoner {
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
 				student.setCurrentFeedbackType(FeedbackData.talkAloud);
+				System.out.println(":: message :: "+message);
 				String type = getTypeFromFeedbackType(student);
 				feedback.sendFeedback(student, message, type, student.getFollowed(), wrapper);
 			}

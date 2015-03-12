@@ -35,6 +35,10 @@ public class TISWrapper {
 	}
 	
 	
+	public void startNewExercise(){
+		analysis.resetVariablesForNewExercise(this);
+	}
+	
 	public void setFractionsLabinUse(boolean value){
 		fractionsLabInUse = value;
 	}

@@ -70,6 +70,7 @@ public class Feedback {
 		
 		if (type.equals("AFFIRMATION")){
 			wrapper.setPopUpWindow(true);
+			student.setAtTheEnd(true);
 		}
 		else {
 			if (currentAffect.isFlow()){
