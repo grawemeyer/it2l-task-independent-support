@@ -87,6 +87,11 @@ public class TISWrapper {
 	public void setMessage(String value) {
 		System.out.println(":::::: setMessage :::: "+value);
 		message = value;
+		if (uploadCheckMathsWordsTimer != null){
+			uploadCheckMathsWordsTimer.cancel();
+			uploadCheckMathsWordsTimer.purge();
+			timerSpeechMathsWords.cancel();
+		}
 	}
 
 	public void setPopUpWindow(boolean value){
