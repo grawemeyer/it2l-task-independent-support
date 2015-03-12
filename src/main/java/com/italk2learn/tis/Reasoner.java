@@ -54,6 +54,7 @@ public class Reasoner {
 		
 		if (type.equals("AFFIRMATION")){
 			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+			student.setCurrentFeedbackType(FeedbackData.affirmation);
 		}
 		else {
 			for (int i = 0; i < feedbackTypes.length; i++){
@@ -155,6 +156,7 @@ public class Reasoner {
 		else if (type == FeedbackData.reflection) result = "REFLECTION";
 		else if (type == FeedbackData.mathsVocabular) result = "MATHS_VOCAB";
 		else if (type == FeedbackData.talkAloud) result = "TALK_ALOUD";
+		else if (type == FeedbackData.affirmation) result = "AFFIRMATION";
 		
 		return result;
 		
