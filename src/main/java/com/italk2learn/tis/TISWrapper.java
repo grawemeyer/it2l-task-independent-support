@@ -12,6 +12,8 @@ public class TISWrapper {
 	Analysis analysis = new Analysis();
 	public byte[] audioStudent;
 	private boolean fractionsLabInUse = false;
+	Timer uploadCheckMathsWordsTimer;
+	TimerTask timerSpeechMathsWords;
 	
 	public TISWrapper(){
 		analysis = new Analysis();
@@ -37,6 +39,11 @@ public class TISWrapper {
 	
 	public void startNewExercise(){
 		analysis.resetVariablesForNewExercise(this);
+		if (uploadCheckMathsWordsTimer != null){
+			uploadCheckMathsWordsTimer.cancel();
+			uploadCheckMathsWordsTimer.purge();
+			timerSpeechMathsWords.cancel();
+		}
 	}
 	
 	public void setFractionsLabinUse(boolean value){
@@ -88,6 +95,13 @@ public class TISWrapper {
 	
 	public void setType(String value){
 		feedbackType = value;
+		if (value.equals("REFLECTION")){
+			timerSpeechMathsWords = new TimerForMathsWordCheck();
+			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
+			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
+			uploadCheckMathsWordsTimer = new Timer(true);
+			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 0, 6 * 1000);
+		}
 	}
 
 	public void setCurrentAffect(String value) {

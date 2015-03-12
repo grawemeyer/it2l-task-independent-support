@@ -130,6 +130,25 @@ public class Analysis {
 			System.out.println("last feedback TALK ALOUD");
 		}
 	}
+	
+	public void checkForMathsWords(TISWrapper wrapper){
+		System.out.println(":::: checkForMathsWords ::::");
+		boolean checkMathsKeywords = false;
+		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
+				((!student.getHighMessage()) && student.viewedMessage()))){
+			checkMathsKeywords = true;
+		}
+		else {
+			checkMathsKeywords = false;
+		}
+		if (checkMathsKeywords){
+			MathsVocabDetector mathsDetector = new MathsVocabDetector();
+			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
+			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
+			Reasoner reasoner = new Reasoner();
+			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
+		}
+	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
 		//check if the current student is speaking or not.
@@ -148,29 +167,9 @@ public class Analysis {
 		student.addAffectWords(currentAffect);
 		
 		Reasoner reasoner = new Reasoner();
-		
-		boolean checkMathsKeywords = false;
-		
 		printCurrentFeedbackType();
 		
-		//set a timer after the feedback has been provided.
-		//during this time collect the list of words
-		//if new task is displayed then delete timer.
-		//do not check spoken words otherwise during this time
-		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
-				((!student.getHighMessage()) && student.viewedMessage()))){
-			checkMathsKeywords = true;
-		}
-		else {
-			checkMathsKeywords = false;
-		}
-		if (checkMathsKeywords){
-			MathsVocabDetector mathsDetector = new MathsVocabDetector();
-			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
-			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
-			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
-		}
-		else if (!wrapper.getFractionsLabInUse()) {
+		if (!wrapper.getFractionsLabInUse()) {
 			reasoner.startFeedbackForStructuredExercise(student, wrapper);
 		}
 
