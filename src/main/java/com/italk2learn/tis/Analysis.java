@@ -101,7 +101,7 @@ public class Analysis {
 		System.out.println("!!!!!");
 		//check currentWordsFromLastMinute
 		
-		if ((currentWordsFromLastMinute != null) && (!student.areWeAtTheEnd())){
+		if ((currentWordsFromLastMinute != null) && ((student != null)&& (!student.areWeAtTheEnd()))){
 			Reasoner reasoner = new Reasoner();
 			if (student == null) student = new StudentModel();
 			reasoner.checkSpokenWords(currentWordsFromLastMinute, student, wrapper);
