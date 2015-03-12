@@ -141,8 +141,8 @@ public class Feedback {
 		student.setHighMessage(wrapper.getPopUpWindow());
 		System.out.println(" FEEDBACK high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
-		wrapper.setType(type);
 		wrapper.setMessage(message);
+		wrapper.setType(type);
 		String affectString = getCurrentAffectValueAsString(currentAffect);
 		wrapper.setCurrentAffect(affectString);
 		wrapper.resetCurrentWordList();
