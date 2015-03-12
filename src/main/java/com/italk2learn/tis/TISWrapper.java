@@ -14,6 +14,7 @@ public class TISWrapper {
 	private boolean fractionsLabInUse = false;
 	Timer uploadCheckMathsWordsTimer;
 	TimerTask timerSpeechMathsWords;
+	boolean firstTime = false;
 	
 	public TISWrapper(){
 		analysis = new Analysis();
@@ -31,6 +32,11 @@ public class TISWrapper {
 		System.out.println("::: fractionsLabInUse::: "+fractionsLabInUse);
 		if (fractionsLabInUse){
 			analysis.analyseSound(audioStudent);
+			if (firstTime){
+				followed = true;
+				viewed = true;
+				firstTime = false;
+			}
 			analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
 		}
 	}
@@ -48,6 +54,7 @@ public class TISWrapper {
 			uploadCheckMathsWordsTimer.purge();
 			timerSpeechMathsWords.cancel();
 		}
+		firstTime = true;
 	}
 	
 	public void setFractionsLabinUse(boolean value){
