@@ -12,7 +12,7 @@ import com.italk2learn.vo.TaskIndependentSupportResponseVO;
 public class Analysis {
 	boolean includeAffect = true;
 	boolean presentAccordingToAffect = true;
-	List<String> currentWords;
+	List<String> currentWordList;
 	List<String> currentWordsFromLastMinute;
 	String currentUser;
 	private StudentModel student;
@@ -143,11 +143,15 @@ public class Analysis {
 		}
 		if (checkMathsKeywords){
 			MathsVocabDetector mathsDetector = new MathsVocabDetector();
-			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWords);
+			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWordList);
 			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
 			Reasoner reasoner = new Reasoner();
 			reasoner.checkMathsWords(student, includesMathsWords, wrapper);
 		}
+	}
+	
+	public void resetCurrentWordList(){
+		currentWordList = new ArrayList<String>();
 	}
 
 	public void analyseWords(List<String> currentWords, TISWrapper wrapper) {
@@ -159,6 +163,8 @@ public class Analysis {
 			currentWordsFromLastMinute = new ArrayList<String>();
 		}
 		currentWordsFromLastMinute.addAll(currentWords);
+		
+		currentWordList.addAll(currentWords);
 		
 		AffectDetector detector = new AffectDetector();
 		Affect currentAffect = detector.getAffectFromWords(currentWords);

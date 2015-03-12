@@ -145,6 +145,7 @@ public class Feedback {
 		wrapper.setMessage(message);
 		String affectString = getCurrentAffectValueAsString(currentAffect);
 		wrapper.setCurrentAffect(affectString);
+		wrapper.resetCurrentWordList();
 	}
 
 

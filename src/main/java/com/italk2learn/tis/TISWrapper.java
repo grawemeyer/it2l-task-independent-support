@@ -107,6 +107,10 @@ public class TISWrapper {
 	public void setCurrentAffect(String value) {
 		affectString = value;
 	}
+
+	public void resetCurrentWordList() {
+		analysis.resetCurrentWordList();
+	}
 	
 	
 	
