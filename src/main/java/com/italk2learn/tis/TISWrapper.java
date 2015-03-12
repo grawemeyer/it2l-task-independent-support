@@ -28,8 +28,11 @@ public class TISWrapper {
 		System.out.println("::: TDStoTIS :::");
 		System.out.println("::: feedback type ::: "+type);
 		System.out.println("followed: "+followed+" viewed: "+viewed);
-		analysis.analyseSound(audioStudent);
-		analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
+		System.out.println("::: fractionsLabInUse::: "+fractionsLabInUse);
+		if (fractionsLabInUse){
+			analysis.analyseSound(audioStudent);
+			analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
+		}
 	}
 	
 	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
