@@ -22,7 +22,7 @@ public class TISWrapper {
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
 		((TimerForSpeechCheck) timerSpeechTask).setWrapper(this);
 		Timer uploadCheckerTimer = new Timer(true);
-		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 0, 60 * 1000);
+		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
 	}
 	
 	public void sendTDStoTIS(List<String> feedback, String type, int level, boolean followed, boolean viewed){
