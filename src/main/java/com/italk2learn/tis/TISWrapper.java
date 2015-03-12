@@ -100,7 +100,7 @@ public class TISWrapper {
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
 			uploadCheckMathsWordsTimer = new Timer(true);
-			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 6, 6 * 1000);
+			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 6* 1000, 6 * 1000);
 		}
 	}
 
