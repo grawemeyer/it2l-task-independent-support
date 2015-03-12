@@ -41,6 +41,7 @@ public class TISWrapper {
 	
 	
 	public void startNewExercise(){
+		System.out.println(":: startNewExercise ::" );
 		analysis.resetVariablesForNewExercise(this);
 		if (uploadCheckMathsWordsTimer != null){
 			uploadCheckMathsWordsTimer.cancel();
