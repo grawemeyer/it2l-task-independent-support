@@ -70,8 +70,11 @@ public class Analysis {
 		student.setAffectSound(affectSound);
 	}
 	
-	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, int level, boolean followed, boolean viewed, TISWrapper wrapper){
+	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, int level, boolean followed, boolean TDSviewed, TISWrapper wrapper){
 		AffectDetector detector = new AffectDetector();
+		student.setViewedMessage(TDSviewed);
+		if (student.getHighMessage()) student.setViewedMessage(true);
+		boolean viewed = student.viewedMessage();
 		Affect interactionAffect = detector.getAffectFromInteraction(followed, viewed);
 		
 		if (student == null) student = new StudentModel();
@@ -79,7 +82,7 @@ public class Analysis {
 		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
 		student.setCombinedAffect(combinedAffect);
 		student.setFollowed(followed);
-		student.setViewedMessage(viewed);
+		
 		
 		Reasoner reasoner = new Reasoner();
 		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
@@ -144,7 +147,10 @@ public class Analysis {
 		
 		printCurrentFeedbackType();
 		
-		//check if this needs to be set after a particular time or when student stops
+		//set a timer after the feedback has been provided.
+		//during this time collect the list of words
+		//if new task is displayed then delete timer.
+		//do not check spoken words otherwise during this time
 		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
 				((!student.getHighMessage()) && student.viewedMessage()))){
 			checkMathsKeywords = true;
