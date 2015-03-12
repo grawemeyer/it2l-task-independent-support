@@ -69,10 +69,12 @@ public class Feedback {
 		double frustrationFollowedLow = 1.0;
 		
 		if (type.equals("AFFIRMATION")){
+			System.out.println(" FEEDBACK AFFIRMATION ");
 			wrapper.setPopUpWindow(true);
 			student.setAtTheEnd(true);
 		}
 		else {
+			System.out.println(" FEEDBACK NOT AFFIRMATION ");
 			if (currentAffect.isFlow()){
 				System.out.println(" FEEDBACK current affect FLOW and followed: "+followed);
 				if (followed){
