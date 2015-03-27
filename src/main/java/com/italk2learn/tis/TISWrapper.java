@@ -15,6 +15,7 @@ public class TISWrapper {
 	Timer uploadCheckMathsWordsTimer;
 	TimerTask timerSpeechMathsWords;
 	boolean firstTime = false;
+	String currentUser = "";
 	
 	public TISWrapper(){
 		analysis = new Analysis();
@@ -25,11 +26,12 @@ public class TISWrapper {
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
 	}
 	
-	public void sendTDStoTIS(List<String> feedback, String type, int level, boolean followed, boolean viewed){
+	public void sendTDStoTIS(String user, List<String> feedback, String type, int level, boolean followed, boolean viewed){
 		System.out.println("::: TDStoTIS :::");
 		System.out.println("::: feedback type ::: "+type);
 		System.out.println("followed: "+followed+" viewed: "+viewed);
 		System.out.println("::: fractionsLabInUse::: "+fractionsLabInUse);
+		currentUser = user;
 		if (fractionsLabInUse){
 			analysis.analyseSound(audioStudent);
 			if (firstTime){
@@ -41,7 +43,9 @@ public class TISWrapper {
 		}
 	}
 	
-	public void sendSpeechOutputToSupport(TaskIndependentSupportRequestVO request) {
+	
+	public void sendSpeechOutputToSupport(String user, TaskIndependentSupportRequestVO request) {
+		currentUser = user;
 		analysis.analyseWords(request.getWords(), this);
 	}
 	
@@ -74,7 +78,7 @@ public class TISWrapper {
 	}
 
 	public String getMessage(){
-		String result = message;
+		String result = "user: "+currentUser+" message: "+message;
 		message = "";
 		return result;
 	}
