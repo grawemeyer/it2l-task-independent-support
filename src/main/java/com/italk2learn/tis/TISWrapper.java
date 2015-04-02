@@ -16,8 +16,10 @@ public class TISWrapper {
 	TimerTask timerSpeechMathsWords;
 	boolean firstTime = false;
 	String currentUser = "";
+	String startUser="";
 	
-	public TISWrapper(){
+	public TISWrapper(String user){
+		startUser = user;
 		analysis = new Analysis();
 		TimerTask timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
@@ -78,7 +80,10 @@ public class TISWrapper {
 	}
 
 	public String getMessage(){
-		String result = "user: "+currentUser+" message: "+message;
+		String result ="";
+		if (message.length() > 0) {
+			result = "start user: "+startUser+" user: "+currentUser+" message: "+message;
+		}
 		message = "";
 		return result;
 	}
