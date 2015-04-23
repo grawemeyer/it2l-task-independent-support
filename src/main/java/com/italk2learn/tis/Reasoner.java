@@ -741,7 +741,7 @@ public class Reasoner {
 		
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
 		
-		if (percentageOfNotDetectedWords > 50){
+		if (percentageOfNotDetectedWords > 20){
 			String message = getMessageFromArray(FeedbackData.talkAloudMessage);
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
