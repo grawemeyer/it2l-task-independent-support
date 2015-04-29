@@ -136,7 +136,9 @@ public class TISWrapper {
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
 			uploadCheckMathsWordsTimer = new Timer(true);
-			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 6000, 6*1000);
+			
+			//this needs to get checked if it stops after displaying it only once..
+			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 3*6000, 0);
 		}
 	}
 
