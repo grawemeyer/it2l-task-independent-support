@@ -1,8 +1,15 @@
 package com.italk2learn.tis;
 
-import java.util.*;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import com.italk2learn.vo.TaskIndependentSupportRequestVO;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
+import org.springframework.stereotype.Service;
+
+//import com.italk2learn.tis.inter.ITISWrapper;
+//import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 
 public class TISWrapper {
 	public boolean popUpWindow = true;
@@ -18,8 +25,8 @@ public class TISWrapper {
 	String currentUser = "";
 	String startUser="";
 	
-	public TISWrapper(String user){
-		startUser = user;
+	public TISWrapper(){
+		startUser = "anonym";
 		analysis = new Analysis();
 		TimerTask timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
@@ -46,9 +53,10 @@ public class TISWrapper {
 	}
 	
 	
-	public void sendSpeechOutputToSupport(String user, TaskIndependentSupportRequestVO request) {
+	public void sendSpeechOutputToSupport(String user, List<String> currentWords){//, TaskIndependentSupportRequestVO request) {
 		currentUser = user;
-		analysis.analyseWords(request.getWords(), this);
+		//analysis.analyseWords(request.getWords(), this);
+		analysis.analyseWords(currentWords, this);
 	}
 	
 	
@@ -80,6 +88,8 @@ public class TISWrapper {
 	}
 
 	public String getMessage(){
+		LdapUserDetailsImpl user = (LdapUserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		startUser=user.getUsername();
 		String result ="";
 		if (message.length() > 0) {
 			result = "start user: "+startUser+" user: "+currentUser+" message: "+message;
@@ -136,7 +146,4 @@ public class TISWrapper {
 	public void resetCurrentWordList() {
 		analysis.resetCurrentWordList();
 	}
-	
-	
-	
 }
