@@ -80,6 +80,10 @@ public class Feedback {
 			System.out.println(" FEEDBACK LAST REFLECTIVE PROMPT ");
 			wrapper.setPopUpWindow(true);
 		}
+		else if (student.getCurrentFeedbackType() == FeedbackData.talkAloud){
+			System.out.println(" FEEDBACK TALK ALOUD PROMPT ");
+			wrapper.setPopUpWindow(true);
+		}
 		else {
 			System.out.println(" FEEDBACK NOT AFFIRMATION ");
 			if (currentAffect.isFlow()){
