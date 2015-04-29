@@ -139,6 +139,7 @@ public class TISWrapper {
 			
 			//this needs to get checked if it stops after displaying it only once..
 			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 3*6000, 0);
+			
 		}
 	}
 
