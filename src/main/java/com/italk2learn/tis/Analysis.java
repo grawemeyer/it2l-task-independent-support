@@ -85,29 +85,30 @@ public class Analysis {
 		student.setAffectSound(affectSound);
 	}
 	
-	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, int level, boolean followed, boolean TDSviewed, TISWrapper wrapper){
+	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, String feedbackID, int level, boolean followed, boolean TDSviewed, TISWrapper wrapper){
+		if (student == null) student = new StudentModel();
+		
 		AffectDetector detector = new AffectDetector();
 		student.setViewedMessage(TDSviewed);
 		if (student.getHighMessage()) student.setViewedMessage(true);
 		boolean viewed = student.viewedMessage();
 		Affect interactionAffect = detector.getAffectFromInteraction(followed, viewed);
 		
-		if (student == null) student = new StudentModel();
 		student.setAffectInteraction(interactionAffect);
 		Affect combinedAffect = detector.getCombinedAffect(student, viewed);
 		student.setCombinedAffect(combinedAffect);
 		student.setFollowed(followed);
-		
+		student.setFeedbackID(feedbackID);
 		
 		Reasoner reasoner = new Reasoner();
-		reasoner.affectiveStateReasoner(student, feedback, type, level, followed, wrapper);
+		reasoner.affectiveStateReasoner(student, feedback, feedbackID, type, level, followed, wrapper);
 		
 	}
 	
 	public void checkIfSpeaking(TISWrapper wrapper){
-		System.out.println("!!!!!");
-		System.out.println("!!!!! check if student is speaking !!!!!");
-		System.out.println("!!!!!");
+		//System.out.println("!!!!!");
+		//System.out.println("!!!!! check if student is speaking !!!!!");
+		//System.out.println("!!!!!");
 		//check currentWordsFromLastMinute
 		
 		if ((currentWordsFromLastMinute != null) && ((student != null)&& (!student.areWeAtTheEnd()))){

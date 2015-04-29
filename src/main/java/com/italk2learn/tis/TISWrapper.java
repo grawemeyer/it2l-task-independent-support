@@ -35,9 +35,10 @@ public class TISWrapper {
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
 	}
 	
-	public void sendTDStoTIS(String user, List<String> feedback, String type, int level, boolean followed, boolean viewed){
+	public void sendTDStoTIS(String user, List<String> feedback, String type, String feedbackID, int level, boolean followed, boolean viewed){
 		System.out.println("::: TDStoTIS :::");
 		System.out.println("::: feedback type ::: "+type);
+		System.out.println("::: feedback id ::: "+feedbackID);
 		System.out.println("followed: "+followed+" viewed: "+viewed);
 		System.out.println("::: fractionsLabInUse::: "+fractionsLabInUse);
 		currentUser = user;
@@ -48,7 +49,7 @@ public class TISWrapper {
 				viewed = true;
 				firstTime = false;
 			}
-			analysis.analyseInteractionAndSetFeedback(feedback, type, level, followed, viewed, this);
+			analysis.analyseInteractionAndSetFeedback(feedback, type, feedbackID, level, followed, viewed, this);
 		}
 	}
 	

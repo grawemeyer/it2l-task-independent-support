@@ -12,7 +12,7 @@ public class Reasoner {
 	
 	
 	
-	public void affectiveStateReasoner(StudentModel student, List<String> feedback, String type, int level,  boolean followed, TISWrapper wrapper){
+	public void affectiveStateReasoner(StudentModel student, List<String> feedback, String type, String feedbackID, int level,  boolean followed, TISWrapper wrapper){
 		//do not update BN for testing purpose
 		//updateBN(student, followed);
 		
@@ -55,6 +55,11 @@ public class Reasoner {
 		if (type.equals("AFFIRMATION")){
 			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
 			student.setCurrentFeedbackType(FeedbackData.affirmation);
+		}
+		else if (feedbackID.contains("E")){
+			//last reflective prompt
+			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+			student.setCurrentFeedbackType(FeedbackData.reflection);
 		}
 		else {
 			for (int i = 0; i < feedbackTypes.length; i++){

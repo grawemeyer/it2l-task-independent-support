@@ -29,6 +29,9 @@ public class StudentModel {
 	boolean viewed = false;
 	boolean atTheEnd = false;
 	
+	String feedbackID = "";
+	
+	
 	public StudentModel(){
 		
 	}
@@ -349,6 +352,14 @@ public class StudentModel {
 		surpriseNotFollowed[3] = addValues(surpriseNotFollowed[3], falseValue, trueValue);
 	}
 
+	public void setFeedbackID(String value) {
+		feedbackID = value;
+		
+	}
 	
+	public String getFeedbackID(){
+		return feedbackID;
+	}
+
 	
 }

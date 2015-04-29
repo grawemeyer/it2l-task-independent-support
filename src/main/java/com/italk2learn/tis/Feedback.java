@@ -71,7 +71,14 @@ public class Feedback {
 		if (type.equals("AFFIRMATION")){
 			System.out.println(" FEEDBACK AFFIRMATION ");
 			wrapper.setPopUpWindow(true);
-			student.setAtTheEnd(true);
+			
+			//not sure if we need to set this to stop checking spoken words as we need this for
+			//the last reflective prompt.
+			//student.setAtTheEnd(true);
+		}
+		else if (student.getFeedbackID().contains("E")){
+			System.out.println(" FEEDBACK LAST REFLECTIVE PROMPT ");
+			wrapper.setPopUpWindow(true);
 		}
 		else {
 			System.out.println(" FEEDBACK NOT AFFIRMATION ");
