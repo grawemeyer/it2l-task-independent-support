@@ -3,13 +3,16 @@ package com.italk2learn.tis;
 import java.util.ArrayList;
 import java.util.List;
 
-import ptdFromAmplitudes.CreateWav;
-import ptdFromAmplitudes.PtdFromAmplitudes;
-
-import com.italk2learn.vo.TaskIndependentSupportRequestVO;
-import com.italk2learn.vo.TaskIndependentSupportResponseVO;
+import ptdFromAmplitudesTIS.CreateWavTIS;
+import ptdFromAmplitudesTIS.PtdFromAmplitudesTIS;
 
 public class Analysis {
+	
+	//524288 each 5 seconds
+	//12 times per minute
+	private static final int SIZE_AUDIO_1MINUTES = 1 * 11 * 524288;
+	
+	
 	boolean includeAffect = true;
 	boolean presentAccordingToAffect = true;
 	List<String> currentWordList;
@@ -35,27 +38,33 @@ public class Analysis {
 	}
 	
 	public void analyseSound(byte[] audioByteArray){
-		String wavname;
-        List<byte[]> exampleChunks = new ArrayList<byte[]>();
-        exampleChunks.add(audioByteArray);
-
-        int numberOfChunksToCombine = exampleChunks.size();
-
-        CreateWav wavcreation = new CreateWav();
-        for (int i = 0; i < numberOfChunksToCombine; i++) {
-            wavcreation.addChunk(exampleChunks.get(i));
-        }
-
-        // Initialize ptd classifier:
-        PtdFromAmplitudes ptdAmpl = new PtdFromAmplitudes();
-
-        // get perceived task difficulty (ptd):
-
-        // Create wav from the last x (here numberOfChunksToCombine) chunks (x = seconds/5)
-        wavname = wavcreation.createWavFileMonoOrStereo(numberOfChunksToCombine);
+		int result;
+		if (audioByteArray!=null && audioByteArray.length>SIZE_AUDIO_1MINUTES) {
+			String wavname;
+	        List<byte[]> exampleChunks = new ArrayList<byte[]>();
+	        exampleChunks.add(audioByteArray);
+	
+	        int numberOfChunksToCombine = exampleChunks.size();
+	
+	        CreateWavTIS wavcreation = new CreateWavTIS();
+	        for (int i = 0; i < numberOfChunksToCombine; i++) {
+	            wavcreation.addChunk(exampleChunks.get(i));
+	        }
+	
+	        // Initialize ptd classifier:
+	        PtdFromAmplitudesTIS ptdAmpl = new PtdFromAmplitudesTIS();
+	
+	        // get perceived task difficulty (ptd):
+	
+	        // Create wav from the last x (here numberOfChunksToCombine) chunks (x = seconds/5)
+	        //wavname = wavcreation.createWavFileMonoOrStereo(numberOfChunksToCombine);
+	        wavname = wavcreation.createWavFile(numberOfChunksToCombine);
+	        
+	        result = ptdAmpl.getPTD(wavname);
         
-        int result = ptdAmpl.getPTD(wavname);
-        
+		} else {
+			result=-1;
+		}
         
         if (result == -1){
         	System.out.println("PTD: no result");
@@ -163,6 +172,10 @@ public class Analysis {
 			currentWordsFromLastMinute = new ArrayList<String>();
 		}
 		currentWordsFromLastMinute.addAll(currentWords);
+		
+		if (currentWordList == null){
+			currentWordList= new ArrayList<String>();
+		}
 		
 		currentWordList.addAll(currentWords);
 		
