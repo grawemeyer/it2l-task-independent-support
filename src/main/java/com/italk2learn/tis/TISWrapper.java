@@ -24,6 +24,7 @@ public class TISWrapper {
 	boolean firstTime = false;
 	String currentUser = "";
 	String startUser="";
+	boolean doneButtonPressed = true;
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -33,6 +34,10 @@ public class TISWrapper {
 		((TimerForSpeechCheck) timerSpeechTask).setWrapper(this);
 		Timer uploadCheckerTimer = new Timer(true);
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
+	}
+	
+	public void sendDoneButtonPressedToTIS(boolean value){
+		doneButtonPressed = value;
 	}
 	
 	public void sendTDStoTIS(String user, List<String> feedback, String type, String feedbackID, int level, boolean followed, boolean viewed){
@@ -115,14 +120,35 @@ public class TISWrapper {
 		return popUpWindow;
 	}
 	
-	public void setMessage(String value) {
-		System.out.println(":::::: setMessage :::: "+value);
-		message = value;
+	private void checkMathsWordsTimer(){
 		if (uploadCheckMathsWordsTimer != null){
 			uploadCheckMathsWordsTimer.cancel();
 			uploadCheckMathsWordsTimer.purge();
 			timerSpeechMathsWords.cancel();
 		}
+	}
+	
+	public void setMessage(String value, boolean popUpWindow) {
+		if (fractionsLabInUse){
+			if (doneButtonPressed) {
+				System.out.println(":::::: setMessage :::: "+value);
+				message = value;
+				checkMathsWordsTimer();
+				if (popUpWindow){
+					doneButtonPressed = false;
+				}
+			}
+		}
+		else {
+			System.out.println(":::::: setMessage :::: "+value);
+			message = value;
+			checkMathsWordsTimer();
+		}
+	}
+	
+	public void resetMessage(){
+		message = "";
+		checkMathsWordsTimer();
 	}
 
 	public void setPopUpWindow(boolean value){

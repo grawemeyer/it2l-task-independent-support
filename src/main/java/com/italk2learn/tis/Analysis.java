@@ -25,7 +25,7 @@ public class Analysis {
 
 	public void resetVariablesForNewExercise(TISWrapper wrapper){
 		student.setAtTheEnd(false);
-		wrapper.setMessage("");
+		wrapper.resetMessage();
 		wrapper.setType("");
 	}
 	

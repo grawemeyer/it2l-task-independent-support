@@ -6,12 +6,12 @@ public class Feedback {
 	
 	
 	public void sendFeedbackInStructuredExercise(StudentModel student, String message,  String type, TISWrapper wrapper){
-		wrapper.setMessage(message);
 		wrapper.setPopUpWindow(true);
+		wrapper.setMessage(message, true);
 		
 		student.setHighMessage(wrapper.getPopUpWindow());
 		wrapper.setType(type);
-		wrapper.setMessage(message);
+		wrapper.setMessage(message, true);
 		Affect currentAffect = student.getCombinedAffect();
 		String affectString = getCurrentAffectValueAsString(currentAffect);
 		wrapper.setCurrentAffect(affectString);
@@ -152,7 +152,7 @@ public class Feedback {
 		student.setHighMessage(wrapper.getPopUpWindow());
 		System.out.println(" FEEDBACK high interruptive: "+wrapper.getPopUpWindow());
 		student.resetAffectWords();
-		wrapper.setMessage(message);
+		wrapper.setMessage(message, wrapper.getPopUpWindow());
 		wrapper.setType(type);
 		String affectString = getCurrentAffectValueAsString(currentAffect);
 		wrapper.setCurrentAffect(affectString);
