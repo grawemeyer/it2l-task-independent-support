@@ -127,11 +127,9 @@ public class TISWrapper {
 	}
 
 	public String getMessage(){
-		LdapUserDetailsImpl user = (LdapUserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		startUser=user.getUsername();
 		String result ="";
 		if (message.length() > 0) {
-			result = "start user: "+startUser+" user: "+currentUser+" message: "+message;
+			result = message;
 		}
 		message = "";
 		return result;
