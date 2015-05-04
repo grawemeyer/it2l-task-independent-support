@@ -9,7 +9,21 @@ public class AffectDetector {
 	private String[] surpriseBag={"wow"};
 	private String[] boredomBag={"bored","boredom", "boring"};
 	
-	public AffectDetector(){
+	private String[] germanFlowBag = {"achja", "genau", "achso", "ja", "hier", "ah", "klar", "OK", "okidoki", "kapier", "kapiert", "einfach", "geschafft", "Spaß", "Kopf", "verstehe", "benutzt"};
+	private String[] germanConfusionBag = {"Hinweis","irritiert","verguckt","verschrieben","verzählt","vertan","tippe","anstrengen","nachdenken","gerechnet","verrechnet","schwieriger","Hilfe","nochmal","erklären","merke","äh", "achso", "wie", "jetzt", "nein", "moment", "weiß", "nicht", "überlegen", "warte", "gar", "nee", "ne","versteh", "nicht", "kapier", "quatsch", "ups", "vergessen", "aufschreiben", "egal", "dünn", "hä", "so", "weg", "fällt", "Problem", "machen", "mach", "macht", "überlege", "rechnen", "wieso", "warum", "was", "falsch"};
+	private String[] germanFrustrationBag = {"leck", "verarschen", "schitte", "kacke", "Hölle", "fuck", "Gott", "nein", "los","kapier", "weiß", "lange", "her", "pack", "doof", "doofes", "wütend", "nervig", "weglassen", "überspringe", "furchtbar", "nicht", "ach", "kann", "viel","noch","gemein","hasse", "voll","scheiße", "scheiß", "falsch","verdammt", "Pause", "shit", "blöd","boah"};
+	private String[] germanSurpriseBag={"wow"};
+	private String[] germanBoredomBag = {"vertauscht", "hasse", "kenne", "hatten","bla", "noch", "gleiche", "wieder", "nochmal", "gelangweilt", "langweilt", "langweilig"};
+	
+	boolean languageEnglish = true;
+	boolean languageGerman = false;
+	boolean languageSpanish = false;
+	
+	
+	public AffectDetector(boolean english, boolean german, boolean spanish){
+		languageEnglish = english;
+		languageGerman = german;
+		languageSpanish = spanish;
 	}
 	
 	
@@ -64,12 +78,33 @@ public class AffectDetector {
 	
 	public Affect getAffectFromWords(List<String> words) {
 		Affect affect = new Affect();
+		String[] thisFlowBag;
+		String[] thisConfusionBag;
+		String[] thisFrustrationBag;
+		String[] thisSurpriseBag;
+		String[] thisBoredomBag;
 		
-		int[] flowValues = checkWordsInBag(words, flowBag);
-		int[] confusionValues = checkWordsInBag(words, confusionBag);
-		int[] frustrationValues = checkWordsInBag(words, frustrationBag);
-		int[] surpriseValues = checkWordsInBag(words, surpriseBag);
-		int[] boredomValues = checkWordsInBag(words, boredomBag);
+		if (languageGerman){
+			thisFlowBag = germanFlowBag;
+			thisConfusionBag = germanConfusionBag;
+			thisFrustrationBag = germanFrustrationBag;
+			thisSurpriseBag = germanSurpriseBag;
+			thisBoredomBag = germanBoredomBag;
+		}
+		else {
+			thisFlowBag = flowBag;
+			thisConfusionBag = confusionBag;
+			thisFrustrationBag = frustrationBag;
+			thisSurpriseBag = surpriseBag;
+			thisBoredomBag = boredomBag;
+		}
+		
+		
+		int[] flowValues = checkWordsInBag(words, thisFlowBag);
+		int[] confusionValues = checkWordsInBag(words, thisConfusionBag);
+		int[] frustrationValues = checkWordsInBag(words, thisFrustrationBag);
+		int[] surpriseValues = checkWordsInBag(words, thisSurpriseBag);
+		int[] boredomValues = checkWordsInBag(words, thisBoredomBag);
 		
 		double affectProability = 1.0/5.0;
 

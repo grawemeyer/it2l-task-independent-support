@@ -88,7 +88,7 @@ public class Analysis {
 	public void analyseInteractionAndSetFeedback(List<String> feedback, String type, String feedbackID, int level, boolean followed, boolean TDSviewed, TISWrapper wrapper){
 		if (student == null) student = new StudentModel();
 		
-		AffectDetector detector = new AffectDetector();
+		AffectDetector detector = new AffectDetector(wrapper.isLanguageEnglish(), wrapper.isLanguageGerman(), wrapper.isLanguageSpanish());
 		student.setViewedMessage(TDSviewed);
 		if (student.getHighMessage()) student.setViewedMessage(true);
 		boolean viewed = student.viewedMessage();
@@ -152,7 +152,7 @@ public class Analysis {
 			checkMathsKeywords = false;
 		}
 		if (checkMathsKeywords){
-			MathsVocabDetector mathsDetector = new MathsVocabDetector();
+			MathsVocabDetector mathsDetector = new MathsVocabDetector(wrapper.isLanguageEnglish(), wrapper.isLanguageGerman(), wrapper.isLanguageSpanish());
 			boolean includesMathsWords = mathsDetector.includesMathsWords(currentWordList);
 			System.out.println("::TIS:: includes maths words: "+includesMathsWords);
 			Reasoner reasoner = new Reasoner();
@@ -180,7 +180,7 @@ public class Analysis {
 		
 		currentWordList.addAll(currentWords);
 		
-		AffectDetector detector = new AffectDetector();
+		AffectDetector detector = new AffectDetector(wrapper.isLanguageEnglish(), wrapper.isLanguageGerman(), wrapper.isLanguageSpanish());
 		Affect currentAffect = detector.getAffectFromWords(currentWords);
 		
 		if (student == null) student = new StudentModel();

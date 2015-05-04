@@ -25,6 +25,9 @@ public class TISWrapper {
 	String currentUser = "";
 	String startUser="";
 	boolean doneButtonPressed = true;
+	boolean languageEnglish = true;
+	boolean languageSpanish = false;
+	boolean languageGerman = false;
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -34,6 +37,36 @@ public class TISWrapper {
 		((TimerForSpeechCheck) timerSpeechTask).setWrapper(this);
 		Timer uploadCheckerTimer = new Timer(true);
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
+	}
+	
+	public void setLanguageInTIStoEnglish(){
+		languageEnglish = true;
+		languageSpanish = false;
+		languageGerman = false;
+	}
+	
+	public void setLanguageInTIStoSpanish(){
+		languageEnglish = false;
+		languageSpanish = true;
+		languageGerman = false;
+	}
+	
+	public void setLanguageInTIStoGerman(){
+		languageEnglish = false;
+		languageSpanish = false;
+		languageGerman = true;
+	}
+	
+	public boolean isLanguageEnglish(){
+		return languageEnglish;
+	}
+	
+	public boolean isLanguageSpanish(){
+		return languageSpanish;
+	}
+	
+	public boolean isLanguageGerman(){
+		return languageGerman;
 	}
 	
 	public void sendDoneButtonPressedToTIS(boolean value){

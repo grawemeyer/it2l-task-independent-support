@@ -25,7 +25,40 @@ public class Reasoner {
 		 */
 		int[][] feedbackValues = getfeedbackValues(student, followed);
 		int[] feedbackTypes = getFeedbackWithHighestProbabilityForEnhancement(feedbackValues);
-		String message = FeedbackData.reflectiveTask[0];
+		
+		String[] reflectiveTask, affectBoostsForConfusion, affectBoostsForFrustration, affectBoostsForBoredom;
+		String reflectiveForflow, reflectiveForConfusion, reflectiveForFrustration;
+		
+		if (wrapper.isLanguageSpanish()){
+			reflectiveTask = FeedbackData.reflectiveTaskSpanish;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusionSpanish;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustrationSpanish;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredomSpanish;
+			reflectiveForflow = FeedbackData.reflectiveForflowSpanish;
+			reflectiveForConfusion = FeedbackData.reflectiveForConfusionSpanish;
+			reflectiveForFrustration = FeedbackData.reflectiveForFrustrationSpanish;
+		}
+		else if (wrapper.isLanguageGerman()){
+			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusionGerman;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustrationGerman;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredomGerman;
+			reflectiveForflow = FeedbackData.reflectiveForflowGerman;
+			reflectiveForConfusion = FeedbackData.reflectiveForConfusionGerman;
+			reflectiveForFrustration = FeedbackData.reflectiveForFrustrationGerman;
+		}
+		else {
+			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusion;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustration;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredom;
+			reflectiveForflow = FeedbackData.reflectiveForflow;
+			reflectiveForConfusion = FeedbackData.reflectiveForConfusion;
+			reflectiveForFrustration = FeedbackData.reflectiveForFrustration;
+		}
+		
+		
+		String message = reflectiveTask[0];
 		
 		String socratic = feedback.get(0);
 		String guidance = feedback.get(1);
@@ -66,19 +99,19 @@ public class Reasoner {
 				int currentFeedbackType = feedbackTypes[i];
 				if (currentFeedbackType == FeedbackData.affectBoosts) {
 					if (currentAffect.isConfusion()){
-						message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
+						message = getMessageFromArray(affectBoostsForConfusion);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
 						System.out.println("::: affectBoostsForConfusion ::: "+message);
 						i = feedbackTypes.length;
 					}
 					else if (currentAffect.isFrustration()){
-						message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
+						message = getMessageFromArray(affectBoostsForFrustration);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
 						System.out.println("::: affectBoostsForFrustration ::: "+message);
 						i = feedbackTypes.length;
 					}
 					else if (currentAffect.isBoredom()){
-						message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
+						message = getMessageFromArray(affectBoostsForBoredom);
 						student.setCurrentFeedbackType(FeedbackData.affectBoosts);
 						System.out.println("::: affectBoostsForBoredom ::: "+message);
 						i = feedbackTypes.length;
@@ -125,20 +158,20 @@ public class Reasoner {
 					}
 					else {
 						if (currentAffect.isFlow()){
-							message = FeedbackData.reflectiveForflow;
+							message = reflectiveForflow;
 							System.out.println("::: reflection flow ::: "+message);
 						}
 						else if (currentAffect.isConfusion()){
-							message = FeedbackData.reflectiveForConfusion;
+							message = reflectiveForConfusion;
 							System.out.println("::: reflection confusion ::: "+message);
 						}
 						else if (currentAffect.isFrustration()){
-							message = FeedbackData.reflectiveForFrustration;
+							message = reflectiveForFrustration;
 							System.out.println("::: reflection frustration ::: "+message);
 						}
 						else {
 							System.out.println("::: random reflection  ::: "+message);
-							message = getMessageFromArray(FeedbackData.reflectiveTask);
+							message = getMessageFromArray(reflectiveTask);
 						}
 						i = feedbackTypes.length;
 					}
@@ -316,19 +349,41 @@ public class Reasoner {
 	public void startFeedbackForStructuredExercise(StudentModel student, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		
+		String[] reflectiveTask, affectBoostsForConfusion, affectBoostsForFrustration, affectBoostsForBoredom;
+		
+		if (wrapper.isLanguageSpanish()){
+			reflectiveTask = FeedbackData.reflectiveTaskSpanish;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusionSpanish;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustrationSpanish;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredomSpanish;
+		}
+		else if (wrapper.isLanguageGerman()){
+			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusionGerman;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustrationGerman;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredomGerman;
+		}
+		else {
+			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusion;
+			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustration;
+			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredom;
+		}
+		
+		
 		Affect currentAffect = student.getAffectWords();
 		student.setCurrentFeedbackType(FeedbackData.affectBoosts);
 		String type = getTypeFromFeedbackType(student);
 		if (currentAffect.isFrustration()){
-			String message = getMessageFromArray(FeedbackData.affectBoostsForFrustration);
+			String message = getMessageFromArray(affectBoostsForFrustration);
 			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 		else if (currentAffect.isConfusion()){
-			String message = getMessageFromArray(FeedbackData.affectBoostsForConfusion);
+			String message = getMessageFromArray(affectBoostsForConfusion);
 			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 		else if (currentAffect.isBoredom()){
-			String message = getMessageFromArray(FeedbackData.affectBoostsForBoredom);
+			String message = getMessageFromArray(affectBoostsForBoredom);
 			feedback.sendFeedbackInStructuredExercise(student, message, type, wrapper);
 		}
 	}
@@ -336,9 +391,20 @@ public class Reasoner {
 	public void checkMathsWords(StudentModel student, boolean includesMathsWords, TISWrapper wrapper) {
 		Feedback feedback = new Feedback();
 		System.out.println(":::: checkMathsWords ::: ");
+		String mathsReminder;
 		
+		if (wrapper.isLanguageSpanish()){
+			mathsReminder = FeedbackData.mathsReminderSpanish;
+		}
+		else if (wrapper.isLanguageGerman()){
+			mathsReminder = FeedbackData.mathsReminderGerman;
+		}
+		else {
+			mathsReminder = FeedbackData.mathsReminder;
+		}
+	
 		if (!includesMathsWords){
-			String message = FeedbackData.mathsReminder;
+			String message = mathsReminder;
 			
 			if (wrapper.getFractionsLabInUse()){
 				
@@ -747,7 +813,17 @@ public class Reasoner {
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
 		
 		if (percentageOfNotDetectedWords > 20){
-			String message = getMessageFromArray(FeedbackData.talkAloudMessage);
+			String[] messages;
+			if (wrapper.isLanguageGerman()){
+				messages = FeedbackData.talkAloudMessageGerman;
+			}
+			else if (wrapper.isLanguageSpanish()){
+				messages = FeedbackData.talkAloudMessageSpanish;
+			}
+			else {
+				messages = FeedbackData.talkAloudMessage;
+			}
+			String message = getMessageFromArray(messages);
 			Feedback feedback = new Feedback();
 			if (wrapper.getFractionsLabInUse()){
 				student.setCurrentFeedbackType(FeedbackData.talkAloud);
