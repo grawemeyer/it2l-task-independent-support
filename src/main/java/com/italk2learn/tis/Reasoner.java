@@ -18,6 +18,16 @@ public class Reasoner {
 		
 		Affect currentAffect = student.getCombinedAffect();
 		
+		//set followed when previous feedback was not TDS problem solving
+		if (!wrapper.getTDSfeedback()){
+			if (currentAffect.isFrustration()){
+				followed = true;
+			}
+			else {
+				followed = false;
+			}
+		}
+		
 		/*
 		 * BN values - affective state reasoner
 		 * {affect_boosts, next_step, problem_solving, reflection}

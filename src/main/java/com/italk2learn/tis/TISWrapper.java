@@ -192,10 +192,15 @@ public class TISWrapper {
 	
 	private void setType(String value){
 		feedbackType = value;
+		
 		if (value.equals("NEXT_STEP") || value.equals("PROBLEM_SOLVING")){
 			setTDSfeedback(true);
 		}
-		else if (value.equals("REFLECTION")){
+		else {
+			setTDSfeedback(false);
+		}
+		
+		if (value.equals("REFLECTION")){
 			timerSpeechMathsWords = new TimerForMathsWordCheck();
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);

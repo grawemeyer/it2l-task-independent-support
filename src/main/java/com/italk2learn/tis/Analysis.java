@@ -105,11 +105,7 @@ public class Analysis {
 	}
 	
 	public void checkIfSpeaking(TISWrapper wrapper){
-		//System.out.println("!!!!!");
-		//System.out.println("!!!!! check if student is speaking !!!!!");
-		//System.out.println("!!!!!");
-		//check currentWordsFromLastMinute
-		
+			
 		if ((currentWordsFromLastMinute != null) && ((student != null)&& (!student.areWeAtTheEnd()))){
 			Reasoner reasoner = new Reasoner();
 			if (student == null) student = new StudentModel();
