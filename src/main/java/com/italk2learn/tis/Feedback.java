@@ -152,6 +152,7 @@ public class Feedback {
 		student.resetAffectWords();
 		wrapper.setMessage(message, wrapper.getPopUpWindow(), type);
 		String affectString = getCurrentAffectValueAsString(currentAffect);
+		System.out.println("<<<<<< affect: "+affectString+" followed: "+followed+" pop up: "+wrapper.getPopUpWindow()+" >>>>>>");
 		wrapper.setCurrentAffect(affectString);
 		wrapper.resetCurrentWordList();
 	}
