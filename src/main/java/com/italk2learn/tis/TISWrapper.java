@@ -28,6 +28,7 @@ public class TISWrapper {
 	boolean languageEnglish = true;
 	boolean languageSpanish = false;
 	boolean languageGerman = false;
+	boolean TDSfeedback = false;
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -159,11 +160,12 @@ public class TISWrapper {
 		}
 	}
 	
-	public void setMessage(String value, boolean popUpWindow) {
+	public void setMessage(String value, boolean popUpWindow, String type) {
 		if (fractionsLabInUse){
 			if (doneButtonPressed) {
 				System.out.println(":::::: setMessage :::: "+value);
 				message = value;
+				setType(type);
 				checkMathsWordsTimer();
 				if (popUpWindow){
 					doneButtonPressed = false;
@@ -173,12 +175,14 @@ public class TISWrapper {
 		else {
 			System.out.println(":::::: setMessage :::: "+value);
 			message = value;
+			setType(type);
 			checkMathsWordsTimer();
 		}
 	}
 	
 	public void resetMessage(){
 		message = "";
+		setType("");
 		checkMathsWordsTimer();
 	}
 
@@ -186,9 +190,12 @@ public class TISWrapper {
 		popUpWindow = value;
 	}
 	
-	public void setType(String value){
+	private void setType(String value){
 		feedbackType = value;
-		if (value.equals("REFLECTION")){
+		if (value.equals("NEXT_STEP") || value.equals("PROBLEM_SOLVING")){
+			setTDSfeedback(true);
+		}
+		else if (value.equals("REFLECTION")){
 			timerSpeechMathsWords = new TimerForMathsWordCheck();
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
@@ -198,6 +205,14 @@ public class TISWrapper {
 			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 3*6000, 0);
 			
 		}
+	}
+	
+	private void setTDSfeedback(boolean value){
+		TDSfeedback = value;
+	}
+	
+	public boolean getTDSfeedback(){
+		return TDSfeedback;
 	}
 
 	public void setCurrentAffect(String value) {
