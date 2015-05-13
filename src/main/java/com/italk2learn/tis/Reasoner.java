@@ -190,9 +190,31 @@ public class Reasoner {
 		}
 		String newType = getTypeFromFeedbackType(student);
 		Feedback displayFeedback = new Feedback();
+		System.out.println("<<<<<< affect: "+getCurrentAffect(currentAffect)+" followed: "+followed+" feedback: "+newType+" >>>>>>");
 		displayFeedback.sendFeedback(student, message, newType, followed, wrapper);
 	}
 	
+	private String getCurrentAffect(Affect affect){
+		String result = "";
+		
+		if (affect.isBoredom()){
+			result = "boredom";
+		}
+		else if (affect.isConfusion()){
+			result = "confusion";
+		}
+		else if (affect.isFlow()){
+			result = "flow";
+		}
+		else if (affect.isFrustration()){
+			result = "frustration";
+		}
+		else if (affect.isSurprise()){
+			result = "surprise";
+		}
+		
+		return result;
+	}
 	
 	private String getTypeFromFeedbackType(StudentModel student){
 		int type = student.getCurrentFeedbackType();
