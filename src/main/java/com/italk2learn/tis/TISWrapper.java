@@ -164,6 +164,11 @@ public class TISWrapper {
 		}
 	}
 	
+	public void saveLog(String name, String value){
+		String nameForValueThatNeedsTogetSavedinDB = name;
+		String valueThatNeedsTogetSavedinDB = value;
+	}
+	
 	public void setMessage(String value, boolean popUpWindow, String type) {
 		if (fractionsLabInUse){
 			if (doneButtonPressed) {
@@ -171,6 +176,14 @@ public class TISWrapper {
 				message = value;
 				setType(type);
 				checkMathsWordsTimer();
+				saveLog("TIS.message", message);
+				saveLog("TIS.type", type);
+				if (popUpWindow)
+					saveLog("TIS.popUp", "true");
+				else {
+					saveLog("TIS.popUp", "false");
+				}
+				
 				if (popUpWindow){
 					doneButtonPressed = false;
 					checkMathsWords();
