@@ -9,6 +9,7 @@ public class FeedbackData {
 	public static int mathsVocabular= 5;
 	public static int talkAloud = 6;
 	public static int affirmation = 7;
+	public static int taskNotFinished = 8;
 
 	public static final String[] talkAloudMessage = {"Please explain what you are doing.",
 		"How do you feel about this task?", "What do you think about this task? Is it easy or hard?",
@@ -36,31 +37,31 @@ public class FeedbackData {
 	
 	public static String mathsReminder = "Please explain that again using the words denominator and numerator.";
 	
-	public static final String[] talkAloudMessageGerman = {"GERMAN Please explain what you are doing.",
-		"GERMAN How do you feel about this task?", "GERMAN What do you think about this task? Is it easy or hard?",
-		"GERMAN Please explain what you're aiming to do.", "GERMAN Please explain what you're going to do next."};
+	public static final String[] talkAloudMessageGerman = {"Erkläre bitte, was du gerade tust.",
+		"Wie fühlst du dich mit dieser Aufgabe?", "Was denkst du über diese Aufgabe: Findest du  sie einfach oder schwierig?",
+		"Erkläre bitte, welches Ziel du verfolgst.", "Erkläre bitte, was du als nächstes tun wirst."};
 	
-	public static final String[] reflectiveTaskGerman = {"GERMAN Have you read the task? What are you asked to do?",
-		"GERMAN Please read the task again. What are you asked to do?"};
+	public static final String[] reflectiveTaskGerman = {"Hast du die Aufgabe gelesen? Was sollst du hier tun?",
+		"Bitte lies die Aufgabe erneut. Was sollst du hier tun?"};
 	
 	public static final String reflectiveForflowGerman = "GERMAN Well done, you've have worked hard on this task. Why did you use this method?";
 	public static final String reflectiveForConfusionGerman = "GERMAN This is quite tricky. What is the task asking you to do?";
 	public static final String reflectiveForFrustrationGerman = "GERMAN When things don't work out as expected, it can be annoying! What are you trying to do?";
 	
-	public static final String[] affectBoostsForConfusionGerman = {"GERMAN You seem like you're trying hard. That's excellent!",
-		"GERMAN Have another go. If you think hard about the problem, you'll soon work out what to do. Well done!",
-		"GERMAN Look at the task again. If you keep working hard, you'll soon make progress. Nice one!"};
+	public static final String[] affectBoostsForConfusionGerman = {"Du gibst dir sehr viel Mühe! Das ist sehr gut!",
+		"Versuche es noch einmal. Wenn du gründlich nachdenkst, wirst du die Aufgabe bald schaffen. Du schaffst das!",
+		"Sieh dir die Aufgabe erneut an. Wenn du gründlich arbeitest, wirst du schon bald Fortschritte machen. Gut gemacht!"};
 	
-	public static final String[] affectBoostsForFrustrationGerman = {"GERMAN It's annoying when things don't work out as you expect. Have another go and see if you can work out what to do",
-		"GERMAN It doesn't always makes sense straight away. Try again and see if you can move forward.",
-		"GERMAN Fractions can be frustrating. What can you remember about denominators and numerators?"};
+	public static final String[] affectBoostsForFrustrationGerman = {"Es ist ärgerlich, wenn Dinge nicht so klappen, wie man es erwartet. Versuche es noch einmal und überlege dir, wie du weiter vorgehen kannst.",
+		"Auch wenn es auf den ersten Blick noch keinen Sinn für dich ergibt, versuche es weiterhin.",
+		"Manchmal kann Rechnen mit Brüchen frustrierend sein. Überlege dennoch, was du schon alles über Zähler und Nenner gelernt hast"};
 	
-	public static final String[] affectBoostsForBoredomGerman = {"GERMAN Are you finding this too easy? Perhaps you should quickly finish this task, so you can tackle a more challenging task.",
-		"GERMAN Fractions aren't always fun. Can you think where you might use fractions outside of school?",
-		"GERMAN Do you think fractions are a bit boring? Once you've had lots of practice, you'll probably find them easy to do.",
-		"GERMAN Can you think of a different way of answering this task, to make it more challenging for you?"};
+	public static final String[] affectBoostsForBoredomGerman = {"Ist dir diese Aufgabe zu einfach? Vielleicht kannst du diese Aufgabe schnell erledigen, damit du dann eine schwierigere Aufgabe machen kannst.",
+		"Auch wenn das Rechnen mit Brüchen nicht immer Spaß macht, kannst du dir vorstellen, wo man Brüche auch außerhalb der Schule benutzen könnte?",
+		"Findest du, dass Brüche ein wenig langweilig sind? Aber wenn du viel geübt hast, wirst du sie sicher einfach finden.",
+		"Vielleicht kannst du die Aufgabe etwas herausfordernder gestalten, indem du einen anderen Lösungsweg für diese Aufgabe findest."};
 	
-	public static String mathsReminderGerman = "GERMAN Please explain that again using the words denominator and numerator.";
+	public static String mathsReminderGerman = "Bitte erkläre das noch einmal und benutze die Worte 'Zähler' und 'Nenner'.";
 	
 	public static final String[] talkAloudMessageSpanish = {"SPANISH Please explain what you are doing.",
 		"SPANISH How do you feel about this task?", "SPANISH What do you think about this task? Is it easy or hard?",

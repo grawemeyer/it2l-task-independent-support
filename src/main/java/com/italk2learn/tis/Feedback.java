@@ -77,6 +77,10 @@ public class Feedback {
 			System.out.println(" FEEDBACK LAST REFLECTIVE PROMPT ");
 			wrapper.setPopUpWindow(true);
 		}
+		else if (type.equals("TASK_NOT_FINISHED")){
+			System.out.println(" FEEDBACK TASK_NOT_FINISHED ");
+			wrapper.setPopUpWindow(true);
+		}
 		//let TIS decide how to present messages
 		//else if (student.getCurrentFeedbackType() == FeedbackData.talkAloud){
 		//	System.out.println(" FEEDBACK TALK ALOUD PROMPT ");
@@ -125,7 +129,7 @@ public class Feedback {
 			else if (currentAffect.isFrustration()){
 				System.out.println(" FEEDBACK current affect FRUSTATION and followed: "+followed);
 				if (followed){
-					if (frustrationFollowedHigh > frustrationFollowedLow){
+					if (frustrationFollowedHigh >= frustrationFollowedLow){
 						wrapper.setPopUpWindow(true);
 					}
 					else {

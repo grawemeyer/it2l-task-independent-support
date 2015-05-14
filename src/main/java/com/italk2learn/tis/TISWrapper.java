@@ -29,6 +29,7 @@ public class TISWrapper {
 	boolean languageSpanish = false;
 	boolean languageGerman = false;
 	boolean TDSfeedback = false;
+	boolean checkForMathsVocab = false;
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -72,6 +73,9 @@ public class TISWrapper {
 	
 	public void sendDoneButtonPressedToTIS(boolean value){
 		doneButtonPressed = value;
+		if (!value){
+			checkMathsWords();
+		}
 	}
 	
 	public void sendTDStoTIS(String user, List<String> feedback, String type, String feedbackID, int level, boolean followed, boolean viewed){
@@ -169,6 +173,7 @@ public class TISWrapper {
 				checkMathsWordsTimer();
 				if (popUpWindow){
 					doneButtonPressed = false;
+					checkMathsWords();
 				}
 			}
 		}
@@ -200,7 +205,17 @@ public class TISWrapper {
 			setTDSfeedback(false);
 		}
 		
+		
 		if (value.equals("REFLECTION")){
+			checkForMathsVocab = true;
+		}
+		else {
+			checkForMathsVocab = false;
+		}
+	}
+	
+	private void checkMathsWords(){
+		if (checkForMathsVocab){
 			timerSpeechMathsWords = new TimerForMathsWordCheck();
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
@@ -208,7 +223,6 @@ public class TISWrapper {
 			
 			//this needs to get checked if it stops after displaying it only once..
 			uploadCheckMathsWordsTimer.scheduleAtFixedRate(timerSpeechMathsWords, 3*6000, 0);
-			
 		}
 	}
 	

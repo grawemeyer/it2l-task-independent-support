@@ -92,6 +92,9 @@ public class Reasoner {
 			else if (currentFeedbackType == FeedbackData.reflection){
 				System.out.println(i+": REFLECTION");
 			}
+			else if (currentFeedbackType == FeedbackData.taskNotFinished){
+				System.out.println(i+": TASK NOT FINISHED");
+			}
 		}
 		
 		
@@ -103,6 +106,10 @@ public class Reasoner {
 			//last reflective prompt
 			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
 			student.setCurrentFeedbackType(FeedbackData.reflection);
+		}
+		else if (type.equals("TASK_NOT_FINISHED")){
+			message = getFirstMessage(socratic, guidance, didacticConceptual, didacticProcedural);
+			student.setCurrentFeedbackType(FeedbackData.taskNotFinished);
 		}
 		else {
 			for (int i = 0; i < feedbackTypes.length; i++){
@@ -227,6 +234,7 @@ public class Reasoner {
 		else if (type == FeedbackData.mathsVocabular) result = "MATHS_VOCAB";
 		else if (type == FeedbackData.talkAloud) result = "TALK_ALOUD";
 		else if (type == FeedbackData.affirmation) result = "AFFIRMATION";
+		else if (type == FeedbackData.taskNotFinished) result = "TASK_NOT_FINISHED";
 		
 		return result;
 		
