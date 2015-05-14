@@ -30,6 +30,8 @@ public class TISWrapper {
 	boolean languageGerman = false;
 	boolean TDSfeedback = false;
 	boolean checkForMathsVocab = false;
+	String nameForValueThatNeedsTogetSavedinDB = "";
+	String valueThatNeedsTogetSavedinDB = "";
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -165,8 +167,26 @@ public class TISWrapper {
 	}
 	
 	public void saveLog(String name, String value){
-		String nameForValueThatNeedsTogetSavedinDB = name;
-		String valueThatNeedsTogetSavedinDB = value;
+		nameForValueThatNeedsTogetSavedinDB = name;
+		valueThatNeedsTogetSavedinDB = value;
+	}
+	
+	public String getLogName(){
+		String result = "";
+		if (!nameForValueThatNeedsTogetSavedinDB.equals("")){
+			result = nameForValueThatNeedsTogetSavedinDB;
+			nameForValueThatNeedsTogetSavedinDB = "";
+		}
+		return result;
+	}
+	
+	public String getLogValue(){
+		String result = "";
+		if (!valueThatNeedsTogetSavedinDB.equals("")){
+			result = valueThatNeedsTogetSavedinDB;
+			valueThatNeedsTogetSavedinDB = "";
+		}
+		return result;
 	}
 	
 	public void setMessage(String value, boolean popUpWindow, String type) {
