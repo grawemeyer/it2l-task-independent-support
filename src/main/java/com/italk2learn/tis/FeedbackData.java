@@ -44,9 +44,9 @@ public class FeedbackData {
 	public static final String[] reflectiveTaskGerman = {"Hast du die Aufgabe gelesen? Was sollst du hier tun?",
 		"Bitte lies die Aufgabe erneut. Was sollst du hier tun?"};
 	
-	public static final String reflectiveForflowGerman = "GERMAN Well done, you've have worked hard on this task. Why did you use this method?";
-	public static final String reflectiveForConfusionGerman = "GERMAN This is quite tricky. What is the task asking you to do?";
-	public static final String reflectiveForFrustrationGerman = "GERMAN When things don't work out as expected, it can be annoying! What are you trying to do?";
+	public static final String reflectiveForflowGerman = "Gut gemacht! Du hast hartnäckig an dieser Aufgabe gearbeitet! Warum bist du so vorgegangen?";
+	public static final String reflectiveForConfusionGerman = "Diese Aufgabe ist ziemlich knifflig! Was sollst du bei dieser Aufgabe machen?";
+	public static final String reflectiveForFrustrationGerman = "Manchmal ist es ärgerlich, wenn die Dinge nicht so laufen wie man erwartet! Was versuchst du gerade zu tun?";
 	
 	public static final String[] affectBoostsForConfusionGerman = {"Du gibst dir sehr viel Mühe! Das ist sehr gut!",
 		"Versuche es noch einmal. Wenn du gründlich nachdenkst, wirst du die Aufgabe bald schaffen. Du schaffst das!",
