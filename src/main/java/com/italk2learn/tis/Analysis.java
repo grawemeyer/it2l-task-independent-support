@@ -100,7 +100,7 @@ public class Analysis {
 		student.setFeedbackID(feedbackID);
 		
 		Reasoner reasoner = new Reasoner();
-		reasoner.affectiveStateReasoner(student, feedback, feedbackID, type, level, followed, wrapper);
+		reasoner.affectiveStateReasoner(student, feedback, type, feedbackID, level, followed, wrapper);
 		
 	}
 	

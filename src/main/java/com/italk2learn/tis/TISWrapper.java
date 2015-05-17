@@ -4,14 +4,27 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.ldap.userdetails.LdapUserDetailsImpl;
 import org.springframework.stereotype.Service;
 
+//import com.italk2learn.bo.inter.ILoginUserService;
+//import com.italk2learn.dao.inter.ITISLogDAO;
+//import com.italk2learn.exception.ITalk2LearnException;
 //import com.italk2learn.tis.inter.ITISWrapper;
-//import com.italk2learn.vo.TaskIndependentSupportRequestVO;
+//import com.italk2learn.vo.ExerciseSequenceRequestVO;
+//import com.italk2learn.vo.HeaderVO;
 
-public class TISWrapper {
+@Service("TISWrapperService")
+public class TISWrapper {// implements ITISWrapper {
+	
+	//@Autowired
+	//public ILoginUserService loginUserService;
+	//@Autowired
+	//public ITISLogDAO tisLogDAO;
+	
+	
 	public boolean popUpWindow = true;
 	public String message = "";
 	public String feedbackType = "";
@@ -167,6 +180,16 @@ public class TISWrapper {
 	}
 	
 	public void saveLog(String name, String value){
+		//ExerciseSequenceRequestVO request= new ExerciseSequenceRequestVO();
+		LdapUserDetailsImpl	user = (LdapUserDetailsImpl)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		//request.setHeaderVO(new HeaderVO());
+		//request.getHeaderVO().setLoginUser(user.getUsername());
+		//try {
+			//getTisLogDAO().storeDataTIS(getLoginUserService().getIdUserInfo(request.getHeaderVO()), name, value);
+		//} catch (ITalk2LearnException e) {
+			// TODO Auto-generated catch block
+			//e.printStackTrace();
+		//}
 		nameForValueThatNeedsTogetSavedinDB = name;
 		valueThatNeedsTogetSavedinDB = value;
 	}
@@ -274,4 +297,12 @@ public class TISWrapper {
 	public void resetCurrentWordList() {
 		analysis.resetCurrentWordList();
 	}
+	
+	//public ILoginUserService getLoginUserService() {
+	//	return loginUserService;
+	//}
+
+	//public ITISLogDAO getTisLogDAO() {
+	//	return tisLogDAO;
+	//}
 }

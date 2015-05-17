@@ -1,6 +1,5 @@
 package com.italk2learn.tis;
 
-import com.italk2learn.vo.TaskIndependentSupportRequestVO;
 
 public class Feedback {
 	
