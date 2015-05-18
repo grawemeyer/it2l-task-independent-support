@@ -29,7 +29,7 @@ public class TISWrapper {// implements ITISWrapper {
 	public String message = "";
 	public String feedbackType = "";
 	public String affectString = "";
-	Analysis analysis = new Analysis();
+	Analysis analysis = new Analysis(this);
 	public byte[] audioStudent;
 	private boolean fractionsLabInUse = false;
 	Timer uploadCheckMathsWordsTimer;
@@ -50,10 +50,9 @@ public class TISWrapper {// implements ITISWrapper {
 	
 	public TISWrapper(){
 		startUser = "anonym";
-		analysis = new Analysis();
+		analysis = new Analysis(this);
 		TimerTask timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
-		((TimerForSpeechCheck) timerSpeechTask).setWrapper(this);
 		Timer uploadCheckerTimer = new Timer(true);
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000, 60 * 1000);
 	}
@@ -301,7 +300,6 @@ public class TISWrapper {// implements ITISWrapper {
 		if (checkForMathsVocab){
 			timerSpeechMathsWords = new TimerForMathsWordCheck();
 			((TimerForMathsWordCheck) timerSpeechMathsWords).setAnalysis(analysis);
-			((TimerForMathsWordCheck) timerSpeechMathsWords).setWrapper(this);
 			uploadCheckMathsWordsTimer = new Timer(true);
 			
 			//this needs to get checked if it stops after displaying it only once..

@@ -19,8 +19,10 @@ public class Analysis {
 	List<String> currentWordsFromLastMinute;
 	String currentUser;
 	private StudentModel student;
-
-	public Analysis() {
+	TISWrapper wrapper;
+	
+	public Analysis(TISWrapper tisWrapper) {
+		wrapper = tisWrapper;
 	}
 
 	public void resetVariablesForNewExercise(TISWrapper wrapper){
@@ -110,7 +112,7 @@ public class Analysis {
 		
 	}
 	
-	public void checkIfSpeaking(TISWrapper wrapper){
+	public void checkIfSpeaking(){
 			
 		if ((currentWordsFromLastMinute != null) && ((student != null)&& (!student.areWeAtTheEnd()))){
 			Reasoner reasoner = new Reasoner();
@@ -142,7 +144,7 @@ public class Analysis {
 		}
 	}
 	
-	public void checkForMathsWords(TISWrapper wrapper){
+	public void checkForMathsWords(){
 		System.out.println(":::: checkForMathsWords ::::");
 		boolean checkMathsKeywords = false;
 		if ((student.getCurrentFeedbackType() == FeedbackData.reflection) && (student.getHighMessage() ||
