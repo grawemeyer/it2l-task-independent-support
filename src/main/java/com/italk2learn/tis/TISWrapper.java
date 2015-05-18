@@ -163,7 +163,10 @@ public class TISWrapper {// implements ITISWrapper {
 	public String getMessage(){
 		String result ="";
 		if (message.length() > 0) {
-			result = message;
+			if (doneButtonPressed) {
+				result = message;
+				saveLog("TIS.provideMessage", message);
+			}
 		}
 		message = "";
 		return result;
