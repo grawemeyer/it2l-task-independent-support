@@ -19,11 +19,14 @@ public class AffectDetector {
 	boolean languageGerman = false;
 	boolean languageSpanish = false;
 	
+	TISWrapper wrapper;
 	
-	public AffectDetector(boolean english, boolean german, boolean spanish){
+	
+	public AffectDetector(boolean english, boolean german, boolean spanish, TISWrapper tisWrapper){
 		languageEnglish = english;
 		languageGerman = german;
 		languageSpanish = spanish;
+		wrapper = tisWrapper;
 	}
 	
 	
@@ -37,6 +40,7 @@ public class AffectDetector {
 				currentWord.toLowerCase();
 				if (currentWord.equals(affectWord)){
 					System.out.println("::: word found: "+affectWord);
+					wrapper.saveLog("TIS.affect.word.detected", affectWord);
 					result[j] = 1;
 					i = words.size();
 				}
@@ -128,6 +132,11 @@ public class AffectDetector {
 		System.out.println("word frustration: "+frustration);
 		System.out.println("word surprise: "+surprise);
 		System.out.println("word boredom: "+boredom);
+		wrapper.saveLog("TIS.affect.word.flow", ""+flow);
+		wrapper.saveLog("TIS.affect.word.confusion", ""+confusion);
+		wrapper.saveLog("TIS.affect.word.frustration", ""+frustration);
+		wrapper.saveLog("TIS.affect.word.surprise", ""+surprise);
+		wrapper.saveLog("TIS.affect.word.boredom", ""+boredom);
 		affect.setFlowValue(flow);
 		affect.setConfusionValue(confusion);
 		affect.setFrustrationValue(frustration);
@@ -177,6 +186,11 @@ public class AffectDetector {
 		System.out.println("interaction frustration: "+affect.getFrustrationValue());
 		System.out.println("interaction surprise: "+affect.getSurpriseValue());
 		System.out.println("interaction boredom: "+affect.getBoredomValue());
+		wrapper.saveLog("TIS.affect.interaction.flow", ""+affect.getFlowValue());
+		wrapper.saveLog("TIS.affect.interaction.confusion", ""+affect.getConfusionValue());
+		wrapper.saveLog("TIS.affect.interaction.frustration", ""+affect.getFrustrationValue());
+		wrapper.saveLog("TIS.affect.interaction.surprise", ""+affect.getSurpriseValue());
+		wrapper.saveLog("TIS.affect.interaction.boredom", ""+affect.getBoredomValue());
 		return affect;
 	}
 	
@@ -249,6 +263,11 @@ public class AffectDetector {
 		System.out.println("combined frustration: "+combinedAffect.getFrustrationValue());
 		System.out.println("combined surprise: "+combinedAffect.getSurpriseValue());
 		System.out.println("combined boredom: "+combinedAffect.getBoredomValue());
+		wrapper.saveLog("TIS.affect.combined.flow", ""+combinedAffect.getFlowValue());
+		wrapper.saveLog("TIS.affect.combined.confusion", ""+combinedAffect.getConfusionValue());
+		wrapper.saveLog("TIS.affect.combined.frustration", ""+combinedAffect.getFrustrationValue());
+		wrapper.saveLog("TIS.affect.combined.surprise", ""+combinedAffect.getSurpriseValue());
+		wrapper.saveLog("TIS.affect.combined.boredom", ""+combinedAffect.getBoredomValue());
 		
 		return combinedAffect;
 	}

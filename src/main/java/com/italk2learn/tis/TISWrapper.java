@@ -45,6 +45,8 @@ public class TISWrapper {// implements ITISWrapper {
 	boolean checkForMathsVocab = false;
 	String nameForValueThatNeedsTogetSavedinDB = "";
 	String valueThatNeedsTogetSavedinDB = "";
+	String lastMessage = "";
+	String lastType = "";
 	
 	public TISWrapper(){
 		startUser = "anonym";
@@ -57,18 +59,21 @@ public class TISWrapper {// implements ITISWrapper {
 	}
 	
 	public void setLanguageInTIStoEnglish(){
+		saveLog("TIS.language", "english");
 		languageEnglish = true;
 		languageSpanish = false;
 		languageGerman = false;
 	}
 	
 	public void setLanguageInTIStoSpanish(){
+		saveLog("TIS.language", "spanish");
 		languageEnglish = false;
 		languageSpanish = true;
 		languageGerman = false;
 	}
 	
 	public void setLanguageInTIStoGerman(){
+		saveLog("TIS.language", "german");
 		languageEnglish = false;
 		languageSpanish = false;
 		languageGerman = true;
@@ -88,7 +93,10 @@ public class TISWrapper {// implements ITISWrapper {
 	
 	public void sendDoneButtonPressedToTIS(boolean value){
 		doneButtonPressed = value;
+		saveLog("TIS.TDS.doneButtonPressed", ""+value);
 		if (!value){
+			saveLog("TIS.wieved.feedback", lastMessage);
+			saveLog("TIS.wieved.type", lastType);
 			checkMathsWords();
 		}
 	}
@@ -99,9 +107,15 @@ public class TISWrapper {// implements ITISWrapper {
 		System.out.println("::: feedback id ::: "+feedbackID);
 		System.out.println("followed: "+followed+" viewed: "+viewed);
 		System.out.println("::: fractionsLabInUse::: "+fractionsLabInUse);
+		
+		saveLog("TIS.TDS.feedback.type", type);
+		saveLog("TIS.TDS.feedback.id", feedbackID);
+		saveLog("TIS.TDS.feedback.level", ""+level);
+		saveLog("TIS.TDS.feedback.followed", ""+followed);
+		saveLog("TIS.TDS.feedback.viewed", ""+viewed);
 		currentUser = user;
 		if (fractionsLabInUse){
-			analysis.analyseSound(audioStudent);
+			analysis.analyseSound(audioStudent, this);
 			if (firstTime){
 				followed = true;
 				viewed = true;
@@ -131,6 +145,7 @@ public class TISWrapper {// implements ITISWrapper {
 	}
 	
 	public void setFractionsLabinUse(boolean value){
+		saveLog("TIS.TDS.fractionsLab", ""+value);
 		fractionsLabInUse = value;
 	}
 	
@@ -221,8 +236,16 @@ public class TISWrapper {// implements ITISWrapper {
 				checkMathsWordsTimer();
 				saveLog("TIS.message", message);
 				saveLog("TIS.type", type);
-				if (popUpWindow)
+				
+				//need to check if that is the correct value for viewed feedback when done button is set to false
+				lastMessage = value;
+				lastType = type;
+				
+				if (popUpWindow){
 					saveLog("TIS.popUp", "true");
+					saveLog("TIS.wieved.feedback", message);
+					saveLog("TIS.wieved.type", type);
+				}
 				else {
 					saveLog("TIS.popUp", "false");
 				}
@@ -234,6 +257,8 @@ public class TISWrapper {// implements ITISWrapper {
 			}
 		}
 		else {
+			saveLog("TIS.wieved.feedback", message);
+			saveLog("TIS.wieved.type", type);
 			System.out.println(":::::: setMessage :::: "+value);
 			message = value;
 			setType(type);
@@ -255,9 +280,11 @@ public class TISWrapper {// implements ITISWrapper {
 		feedbackType = value;
 		
 		if (value.equals("NEXT_STEP") || value.equals("PROBLEM_SOLVING")){
+			saveLog("TIS.feedback.TDS", "true");
 			setTDSfeedback(true);
 		}
 		else {
+			saveLog("TIS.feedback.TDS", "false");
 			setTDSfeedback(false);
 		}
 		

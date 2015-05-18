@@ -28,6 +28,11 @@ public class Reasoner {
 			}
 		}
 		
+		wrapper.saveLog("TIS.BN.feedback.type.input.type", type);
+		wrapper.saveLog("TIS.BN.feedback.type.input.id", feedbackID);
+		wrapper.saveLog("TIS.BN.feedback.type.input.level", ""+level);
+		wrapper.saveLog("TIS.BN.feedback.type.input.followed", ""+followed);
+		
 		/*
 		 * BN values - affective state reasoner
 		 * {affect_boosts, next_step, problem_solving, reflection}
@@ -195,7 +200,13 @@ public class Reasoner {
 				}	
 			}
 		}
+		
 		String newType = getTypeFromFeedbackType(student);
+		
+		wrapper.saveLog("TIS.BN.feedback.type.output.affect", getCurrentAffect(currentAffect));
+		wrapper.saveLog("TIS.BN.feedback.type.output.type", newType);
+		wrapper.saveLog("TIS.BN.feedback.type.output.message", message);
+		
 		Feedback displayFeedback = new Feedback();
 		System.out.println("<<<<<< affect: "+getCurrentAffect(currentAffect)+" followed: "+followed+" feedback: "+newType+" >>>>>>");
 		displayFeedback.sendFeedback(student, message, newType, followed, wrapper);

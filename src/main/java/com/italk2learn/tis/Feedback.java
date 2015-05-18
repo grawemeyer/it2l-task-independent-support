@@ -5,6 +5,11 @@ public class Feedback {
 	
 	
 	public void sendFeedbackInStructuredExercise(StudentModel student, String message,  String type, TISWrapper wrapper){
+		
+		wrapper.saveLog("TIS.structuredExercise.feedback.presentation.input.type", type);
+		wrapper.saveLog("TIS.structuredExercise.presentation.input.message", message);
+		wrapper.saveLog("TIS.structuredExercise.presentation.popUp", "true");
+		
 		wrapper.setPopUpWindow(true);
 		student.setHighMessage(wrapper.getPopUpWindow());
 		wrapper.setMessage(message, true, type);
@@ -48,6 +53,10 @@ public class Feedback {
 
 	public void sendFeedback(StudentModel student, String message, String type, boolean followed, TISWrapper wrapper) {
 		Affect currentAffect = student.getCombinedAffect();
+		
+		wrapper.saveLog("TIS.BN.feedback.presentation.input.message", message);
+		wrapper.saveLog("TIS.BN.feedback.presentation.input.type", type);
+		wrapper.saveLog("TIS.BN.feedback.presentation.input.followed", ""+followed);
 		
 		wrapper.setPopUpWindow(false);
 		
@@ -156,6 +165,10 @@ public class Feedback {
 		wrapper.setMessage(message, wrapper.getPopUpWindow(), type);
 		String affectString = getCurrentAffectValueAsString(currentAffect);
 		System.out.println("<<<<<< affect: "+affectString+" followed: "+followed+" pop up: "+wrapper.getPopUpWindow()+" >>>>>>");
+		
+		wrapper.saveLog("TIS.BN.feedback.presentation.output.affect", affectString);
+		wrapper.saveLog("TIS.BN.feedback.presentation.output.popUp", ""+wrapper.getPopUpWindow());
+		
 		wrapper.setCurrentAffect(affectString);
 		wrapper.resetCurrentWordList();
 	}
