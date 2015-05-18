@@ -163,10 +163,8 @@ public class TISWrapper {// implements ITISWrapper {
 	public String getMessage(){
 		String result ="";
 		if (message.length() > 0) {
-			if (doneButtonPressed) {
-				result = message;
-				saveLog("TIS.provideMessage", message);
-			}
+			result = message;
+			saveLog("TIS.provideMessage", message);
 		}
 		message = "";
 		return result;
@@ -247,14 +245,11 @@ public class TISWrapper {// implements ITISWrapper {
 					saveLog("TIS.popUp", "true");
 					saveLog("TIS.wieved.feedback", message);
 					saveLog("TIS.wieved.type", type);
+					doneButtonPressed = false;
+					checkMathsWords();
 				}
 				else {
 					saveLog("TIS.popUp", "false");
-				}
-				
-				if (popUpWindow){
-					doneButtonPressed = false;
-					checkMathsWords();
 				}
 			}
 		}
