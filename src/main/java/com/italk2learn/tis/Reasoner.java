@@ -20,12 +20,13 @@ public class Reasoner {
 		
 		//set followed when previous feedback was not TDS problem solving
 		if (!wrapper.getTDSfeedback()){
-			if (currentAffect.isFrustration()){
-				followed = true;
-			}
-			else {
-				followed = false;
-			}
+			followed = student.getIsSpeaking();
+			//if (currentAffect.isFrustration()){
+			//	followed = true;
+			//}
+			//else {
+			//	followed = false;
+			//}
 		}
 		
 		wrapper.saveLog("TIS.BN.feedback.type.input.type", type);
@@ -864,6 +865,7 @@ public class Reasoner {
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
 		
 		if (percentageOfNotDetectedWords > 20){
+			student.setIsSpeaking(false);
 			String[] messages;
 			if (wrapper.isLanguageGerman()){
 				messages = FeedbackData.talkAloudMessageGerman;
@@ -887,6 +889,9 @@ public class Reasoner {
 			 String type = getTypeFromFeedbackType(student);
 			 feedback.sendFeedbackInStructuredExercise(student, message, type,  wrapper);
 			}
+		}
+		else {
+			student.setIsSpeaking(true);
 		}
 		
 	}

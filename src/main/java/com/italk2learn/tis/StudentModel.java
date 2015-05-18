@@ -31,9 +31,19 @@ public class StudentModel {
 	
 	String feedbackID = "";
 	
+	boolean isSpeaking = false;
+	
 	
 	public StudentModel(){
 		
+	}
+	
+	public void setIsSpeaking(boolean value){
+		isSpeaking = value;
+	}
+	
+	public boolean getIsSpeaking(){
+		return isSpeaking;
 	}
 	
 	public void setAtTheEnd(boolean value){
