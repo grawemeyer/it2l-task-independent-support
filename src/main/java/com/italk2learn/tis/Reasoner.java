@@ -64,7 +64,7 @@ public class Reasoner {
 			reflectiveForFrustration = FeedbackData.reflectiveForFrustrationGerman;
 		}
 		else {
-			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			reflectiveTask = FeedbackData.reflectiveTask;
 			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusion;
 			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustration;
 			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredom;
@@ -416,7 +416,7 @@ public class Reasoner {
 			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredomGerman;
 		}
 		else {
-			reflectiveTask = FeedbackData.reflectiveTaskGerman;
+			reflectiveTask = FeedbackData.reflectiveTask;
 			affectBoostsForConfusion = FeedbackData.affectBoostsForConfusion;
 			affectBoostsForFrustration = FeedbackData.affectBoostsForFrustration;
 			affectBoostsForBoredom = FeedbackData.affectBoostsForBoredom;
