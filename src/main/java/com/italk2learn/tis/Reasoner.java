@@ -30,6 +30,7 @@ public class Reasoner {
 		wrapper.saveLog("TIS.BN.feedback.type.input.type", type);
 		wrapper.saveLog("TIS.BN.feedback.type.input.id", feedbackID);
 		wrapper.saveLog("TIS.BN.feedback.type.input.level", ""+level);
+		wrapper.saveLog("TIS.BN.feedback.type.input.previousFeedback", ""+getTypeFromFeedbackType(student));
 		wrapper.saveLog("TIS.BN.feedback.type.input.followed", ""+followed);
 		
 		/*
