@@ -113,6 +113,7 @@ public class TISWrapper {//implements ITISWrapper {
 		saveLog("TIS.TDS.feedback.level", "" + level);
 		saveLog("TIS.TDS.feedback.followed", "" + followed);
 		saveLog("TIS.TDS.feedback.viewed", "" + viewed);
+		saveLog("TIS.TDS.feedback.user", user);
 		currentUser = user;
 		if (fractionsLabInUse) {
 			analysis.analyseSound(audioStudent, this);
@@ -130,6 +131,7 @@ public class TISWrapper {//implements ITISWrapper {
 																					// TaskIndependentSupportRequestVO
 																					// request)
 																					// {
+		saveLog("TIS.speech.user", user);
 		currentUser = user;
 		// analysis.analyseWords(request.getWords(), this);
 		analysis.analyseWords(currentWords, this);
@@ -236,6 +238,7 @@ public class TISWrapper {//implements ITISWrapper {
 	}
 
 	public void setMessage(String value, boolean popUpWindow, String type) {
+		saveLog("TIS.currentUser", currentUser);
 		if (fractionsLabInUse) {
 			if (doneButtonPressed) {
 				System.out.println(":::::: setMessage :::: " + value);
