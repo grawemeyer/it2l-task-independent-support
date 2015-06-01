@@ -261,6 +261,8 @@ public class TISWrapper {//implements ITISWrapper {
 				}
 			}
 		} else {
+			saveLog("TIS.message", message);
+			saveLog("TIS.type", type);
 			saveLog("TIS.wieved.feedback", message);
 			saveLog("TIS.wieved.type", type);
 			System.out.println(":::::: setMessage :::: " + value);
