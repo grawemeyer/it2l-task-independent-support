@@ -862,6 +862,18 @@ public class Reasoner {
 		double percentageOfNotDetectedWords = getPercentageOfNotDetectedWords(currentWordsFromLastMinute);
 		
 		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
+		boolean followed = false;
+		if (!wrapper.getTDSfeedback()){
+			wrapper.saveLog("TIS.checkWords.getFollowed", "speak");
+			followed = student.getIsSpeaking();
+		}
+		else {
+			wrapper.saveLog("TIS.checkWords.getFollowed", "TDS");
+			followed = student.getFollowed();
+		}
+				
+		wrapper.saveLog("TIS.checkWords.previousFeedback", ""+getTypeFromFeedbackType(student));
+		wrapper.saveLog("TIS.checkWords.followed", ""+followed);
 		
 		if (percentageOfNotDetectedWords > 20){
 			student.setIsSpeaking(false);
