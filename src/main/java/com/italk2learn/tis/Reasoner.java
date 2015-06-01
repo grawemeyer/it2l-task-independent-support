@@ -6,8 +6,6 @@ import java.util.Random;
 
 import org.apache.commons.lang.ArrayUtils;
 
-import com.italk2learn.vo.TaskIndependentSupportRequestVO;
-
 public class Reasoner {
 	
 	
