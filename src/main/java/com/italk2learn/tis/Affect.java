@@ -30,50 +30,50 @@ public class Affect {
 	}
 	
 	public boolean isFlow(){
-		if ((flow > surprise) &&
-				(flow > boredom) &&
-				(flow > confusion) &&
-				(flow > frustration)){
+		if ((flow !=0) && (flow >= surprise) &&
+				(flow >= boredom) &&
+				(flow >= confusion) &&
+				(flow >= frustration)){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isSurprise(){
-		if ((surprise > flow) &&
-				(surprise > boredom) &&
-				(surprise > confusion) &&
-				(surprise > frustration)){
+		if ((surprise != 0) && (surprise >= flow) &&
+				(surprise >= boredom) &&
+				(surprise >= confusion) &&
+				(surprise >= frustration)){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isBoredom(){
-		if ((boredom > flow) &&
-				(boredom > surprise) &&
-				(boredom > confusion) &&
-				(boredom > frustration)){
+		if ((boredom !=0) && (boredom >= flow) &&
+				(boredom >= surprise) &&
+				(boredom >= confusion) &&
+				(boredom >= frustration)){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isConfusion(){
-		if ((confusion > flow) &&
-				(confusion > surprise) &&
-				(confusion > boredom) &&
-				(confusion > frustration)){
+		if ((confusion != 0) && (confusion >= flow) &&
+				(confusion >= surprise) &&
+				(confusion >= boredom) &&
+				(confusion >= frustration)){
 			return true;
 		}
 		return false;
 	}
 	
 	public boolean isFrustration(){
-		if ((frustration > flow) &&
-				(frustration > surprise) &&
-				(frustration > boredom) &&
-				(frustration > confusion)){
+		if ((frustration !=0) && (frustration >= flow) &&
+				(frustration >= surprise) &&
+				(frustration >= boredom) &&
+				(frustration >= confusion)){
 			return true;
 		}
 		return false;

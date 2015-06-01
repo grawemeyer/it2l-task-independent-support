@@ -180,6 +180,11 @@ public class AffectDetector {
 			affect.setFlowValue(viewedFalseFollowedFalseFlow);
 			affect.setFrustrationValue(viewedFalseFollowedFalseFrustrated);
 		}
+		else if (feedbackFollowed &&  !messageViewed){
+			affect.setConfusionValue(viewedTrueFollowedTrueConfused);
+			affect.setFlowValue(viewedTrueFollowedTrueFlow);
+			affect.setFrustrationValue(viewedTrueFollowedTrueFrustrated);
+		}
 	
 		System.out.println("interaction flow: "+affect.getFlowValue());
 		System.out.println("interaction confusion: "+affect.getConfusionValue());
