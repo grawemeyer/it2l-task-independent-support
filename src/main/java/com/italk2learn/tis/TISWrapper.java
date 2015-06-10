@@ -131,7 +131,8 @@ public class TISWrapper {//implements ITISWrapper {
 																					// TaskIndependentSupportRequestVO
 																					// request)
 																					// {
-		saveLog("TIS.speech.user", user);
+		//Database connection problem
+		//saveLog("TIS.speech.user", user);
 		currentUser = user;
 		// analysis.analyseWords(request.getWords(), this);
 		analysis.analyseWords(currentWords, this);
@@ -346,7 +347,6 @@ public class TISWrapper {//implements ITISWrapper {
 	/*public ILoginUserService getLoginUserService() {
 		return loginUserService;
 	}
-
 	public ITISLogDAO getTisLogDAO() {
 		return tisLogDAO;
 	}*/
