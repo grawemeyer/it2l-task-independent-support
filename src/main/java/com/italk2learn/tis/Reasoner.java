@@ -861,20 +861,21 @@ public class Reasoner {
 	public void checkSpokenWords(List<String> currentWordsFromLastMinute, StudentModel student, TISWrapper wrapper) {
 		double percentageOfNotDetectedWords = getPercentageOfNotDetectedWords(currentWordsFromLastMinute);
 		
-		System.out.println("percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
-		boolean followed = false;
-		if (!wrapper.getTDSfeedback()){
-			wrapper.saveLog("TIS.checkWords.getFollowed", "speak");
-			followed = student.getIsSpeaking();
-		}
-		else {
-			wrapper.saveLog("TIS.checkWords.getFollowed", "TDS");
-			followed = student.getFollowed();
-		}
-				
-		wrapper.saveLog("TIS.checkWords.previousFeedback", ""+getTypeFromFeedbackType(student));
-		wrapper.saveLog("TIS.checkWords.followed", ""+followed);
 		
+		System.out.println("NEW percentageOfNotDetectedWords: "+percentageOfNotDetectedWords);
+		boolean followed = false;
+				if (!wrapper.getTDSfeedback()){
+					wrapper.saveLog("TIS.checkWords.getFollowed", "speak");
+					followed = student.getIsSpeaking();
+				}
+				else {
+		wrapper.saveLog("TIS.checkWords.getFollowed", "TDS");
+					followed = student.getFollowed();
+				}
+						
+				wrapper.saveLog("TIS.checkWords.previousFeedback", ""+getTypeFromFeedbackType(student));
+				wrapper.saveLog("TIS.checkWords.followed", ""+followed);
+				
 		if (percentageOfNotDetectedWords > 20){
 			student.setIsSpeaking(false);
 			String[] messages;
@@ -910,7 +911,15 @@ public class Reasoner {
 	private double getPercentageOfNotDetectedWords(List<String> listoftWords){
 		double result = 0.0;
 		double count = 0.0;
-		double length = listoftWords.size();
+		double length = 0.0;
+		
+		if (listoftWords != null){
+			length = listoftWords.size();
+		}
+		else {
+			result = 25.0;
+		}
+		
 		//[SILENCE]  [SPEECH]
 		for (int i = 0; i< length; i++){
 			String word = listoftWords.get(i);
@@ -919,7 +928,9 @@ public class Reasoner {
 				count +=1.0;
 			}
 		}
-		result = (double) (count/length) *100.00;
+		if (length > 0) {
+			result = (double) (count/length) *100.00;
+		}
 		return result;
 	}
 

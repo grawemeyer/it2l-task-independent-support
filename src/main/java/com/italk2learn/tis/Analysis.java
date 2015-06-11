@@ -113,12 +113,15 @@ public class Analysis {
 	}
 	
 	public void checkIfSpeaking(){
-			
-		if ((currentWordsFromLastMinute != null) && ((student != null)&& (!student.areWeAtTheEnd()))){
+		System.out.println("hier in checkIfSpeaking");
+		if ((student != null)&& (!student.areWeAtTheEnd())){
 			Reasoner reasoner = new Reasoner();
-			if (student == null) student = new StudentModel();
+			//if (student == null) student = new StudentModel();
 			reasoner.checkSpokenWords(currentWordsFromLastMinute, student, wrapper);
-			currentWordsFromLastMinute.clear();
+			if (currentWordsFromLastMinute != null) {
+				currentWordsFromLastMinute.clear();
+			}
+			
 		}
 		
 	}
