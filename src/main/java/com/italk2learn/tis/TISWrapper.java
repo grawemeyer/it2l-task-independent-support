@@ -46,17 +46,39 @@ public class TISWrapper {//implements ITISWrapper {
 	String valueThatNeedsTogetSavedinDB = "";
 	String lastMessage = "";
 	String lastType = "";
+	TimerTask timerSpeechTask;
+	Timer uploadCheckerTimer;
 
 	public TISWrapper() {
 		startUser = "anonym";
 		analysis = new Analysis(this);
-		TimerTask timerSpeechTask = new TimerForSpeechCheck();
+		timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
-		Timer uploadCheckerTimer = new Timer(true);
+		uploadCheckerTimer = new Timer(true);
 		uploadCheckerTimer.scheduleAtFixedRate(timerSpeechTask, 30 * 1000,
 				60 * 1000);
 	}
 
+	public void stopTimers(){
+		if (uploadCheckMathsWordsTimer != null) {
+			uploadCheckMathsWordsTimer.cancel();
+			uploadCheckMathsWordsTimer.purge();
+			uploadCheckMathsWordsTimer = null;
+		}
+		if (timerSpeechMathsWords != null){
+			timerSpeechMathsWords.cancel();
+			timerSpeechMathsWords = null;
+		}
+		if (timerSpeechTask != null){
+			timerSpeechTask.cancel();
+			timerSpeechTask = null;
+		}
+		if (uploadCheckerTimer != null){
+			uploadCheckerTimer.cancel();
+			uploadCheckerTimer = null;
+		}
+	}
+	
 	public void setLanguageInTIStoEnglish() {
 		saveLog("TIS.language", "english");
 		languageEnglish = true;
