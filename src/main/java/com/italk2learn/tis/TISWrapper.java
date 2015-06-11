@@ -42,8 +42,6 @@ public class TISWrapper {//implements ITISWrapper {
 	boolean languageGerman = false;
 	boolean TDSfeedback = false;
 	boolean checkForMathsVocab = false;
-	String nameForValueThatNeedsTogetSavedinDB = "";
-	String valueThatNeedsTogetSavedinDB = "";
 	String lastMessage = "";
 	String lastType = "";
 	TimerTask timerSpeechTask;
@@ -238,27 +236,8 @@ public class TISWrapper {//implements ITISWrapper {
 				e.printStackTrace();
 			}
 		}
-		nameForValueThatNeedsTogetSavedinDB = name;
-		valueThatNeedsTogetSavedinDB = value;
 	}
 
-	public String getLogName() {
-		String result = "";
-		if (!nameForValueThatNeedsTogetSavedinDB.equals("")) {
-			result = nameForValueThatNeedsTogetSavedinDB;
-			nameForValueThatNeedsTogetSavedinDB = "";
-		}
-		return result;
-	}
-
-	public String getLogValue() {
-		String result = "";
-		if (!valueThatNeedsTogetSavedinDB.equals("")) {
-			result = valueThatNeedsTogetSavedinDB;
-			valueThatNeedsTogetSavedinDB = "";
-		}
-		return result;
-	}
 
 	public void setMessage(String value, boolean popUpWindow, String type) {
 		saveLog("TIS.currentUser", currentUser);
