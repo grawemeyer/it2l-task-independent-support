@@ -89,11 +89,10 @@ public class Feedback {
 			System.out.println(" FEEDBACK TASK_NOT_FINISHED ");
 			wrapper.setPopUpWindow(true);
 		}
-		//let TIS decide how to present messages
-		//else if (student.getCurrentFeedbackType() == FeedbackData.talkAloud){
-		//	System.out.println(" FEEDBACK TALK ALOUD PROMPT ");
-		//	wrapper.setPopUpWindow(true);
-		//}
+		else if (student.getCurrentFeedbackType() == FeedbackData.talkAloud){
+			System.out.println(" FEEDBACK TALK ALOUD PROMPT ");
+			wrapper.setPopUpWindow(true);
+		}
 		else {
 			System.out.println(" FEEDBACK NOT AFFIRMATION ");
 			if (currentAffect.isFlow()){
