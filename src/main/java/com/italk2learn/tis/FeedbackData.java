@@ -13,7 +13,7 @@ public class FeedbackData {
 
 	public static final String[] talkAloudMessage = {"Please explain what you are doing.",
 		"How do you feel about this task?", "What do you think about this task? Is it easy or hard?",
-		"Please explain what you're aiming to do.", "Please explain what you're going to do next."};
+		"Please explain what you're aiming to do.", "Please explain what you're going to do next. You might find it helpful to read the task again."};
 	
 	public static final String[] reflectiveTask = {"Have you read the task? What are you asked to do?",
 		"Please read the task again. What are you asked to do?"};
