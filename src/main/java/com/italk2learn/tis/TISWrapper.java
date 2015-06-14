@@ -47,7 +47,9 @@ public class TISWrapper {//implements ITISWrapper {
 	TimerTask timerSpeechTask;
 	Timer uploadCheckerTimer;
 
-	public TISWrapper() {
+	public TISWrapper() {}
+	
+	public void startTIS(){
 		startUser = "anonym";
 		analysis = new Analysis(this);
 		timerSpeechTask = new TimerForSpeechCheck();
