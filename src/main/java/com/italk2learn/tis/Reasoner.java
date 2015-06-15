@@ -315,19 +315,19 @@ public class Reasoner {
 		double combinedAffectBoostsValues = affectBoosts[0] + affectBoosts[1];
 		double affectBoostsMultiplicator = 1/(double) (affectBoosts[0] + affectBoosts[1]);
 		double affectBoostsTrue = (double) affectBoosts[1] * affectBoostsMultiplicator;
-		if ((affectBoosts[0] == 0.0) && (affectBoosts[1] == 0.0)) affectBoostsTrue= 0.0;
+		if (affectBoosts[1] == 0.0) affectBoostsTrue= 0.0;
 		
 		double nextStepMultiplicator = 1/ (double) (nextStep[0] + nextStep[1]);
 		double nextStepTrue = (double) nextStep[1] * nextStepMultiplicator;
-		if ((nextStep[0] == 0.0) && (nextStep[1] == 0.0)) nextStepTrue= 0.0;
+		if (nextStep[1] == 0.0) nextStepTrue= 0.0;
 		
 		double problemSolvingMultiplicator = 1/ (double) (problemSolving[0] + problemSolving[1]);
 		double problemSolvingTrue = (double) problemSolving[1] * problemSolvingMultiplicator;
-		if ((problemSolving[0] == 0.0) && (problemSolving[1] == 0.0)) problemSolvingTrue= 0.0;
+		if (problemSolving[1] == 0.0) problemSolvingTrue= 0.0;
 		
 		double reflectionMultiplicator = 1/(double) (reflection[0] + reflection[1]);
 		double reflectionTrue = (double) reflection[1] * reflectionMultiplicator;
-		if ((reflection[0] == 0.0) && (reflection[1] == 0.0)) reflectionTrue= 0.0;
+		if  (reflection[1] == 0.0) reflectionTrue= 0.0;
 		
 		System.out.println("affectBoostsTrue: "+affectBoostsTrue);
 		System.out.println("nextStepTrue: "+nextStepTrue);
