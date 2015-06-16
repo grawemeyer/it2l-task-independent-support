@@ -233,7 +233,14 @@ public class TISWrapper {//implements ITISWrapper {
 			}
 		}
 	}
+	
+	public void popUpOpen(){
+		doneButtonPressed = false;
+	}
 
+	public void popUpClosed(){
+		doneButtonPressed = true;
+	}
 
 	public void setMessage(String value, boolean popUpWindow, String type) {
 		saveLog("TIS.currentUser", currentUser);
