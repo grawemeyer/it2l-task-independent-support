@@ -130,12 +130,6 @@ public class TISWrapper {//implements ITISWrapper {
 		System.out.println("followed: " + followed + " viewed: " + viewed);
 		System.out.println("::: fractionsLabInUse::: " + fractionsLabInUse);
 
-		saveLog("TIS.TDS.feedback.type", type);
-		saveLog("TIS.TDS.feedback.id", feedbackID);
-		saveLog("TIS.TDS.feedback.level", "" + level);
-		saveLog("TIS.TDS.feedback.followed", "" + followed);
-		saveLog("TIS.TDS.feedback.viewed", "" + viewed);
-		saveLog("TIS.TDS.feedback.user", user);
 		currentUser = user;
 		if (fractionsLabInUse) {
 			analysis.analyseSound(audioStudent, this);
@@ -249,8 +243,8 @@ public class TISWrapper {//implements ITISWrapper {
 				message = value;
 				setType(type);
 				checkMathsWordsTimer();
-				saveLog("TIS.message", message);
-				saveLog("TIS.type", type);
+				saveLog("TIS.set.message", message);
+				saveLog("TIS.set.type", type);
 
 				// need to check if that is the correct value for viewed
 				// feedback when done button is set to false
@@ -268,8 +262,8 @@ public class TISWrapper {//implements ITISWrapper {
 				}
 			}
 		} else {
-			saveLog("TIS.message", message);
-			saveLog("TIS.type", type);
+			saveLog("TIS.set.message", message);
+			saveLog("TIS.set.type", type);
 			saveLog("TIS.wieved.feedback", message);
 			saveLog("TIS.wieved.type", type);
 			System.out.println(":::::: setMessage :::: " + value);
@@ -293,12 +287,12 @@ public class TISWrapper {//implements ITISWrapper {
 		feedbackType = value;
 		System.out.println("teeeeeeeesT"+value);
 		if (value.equals("NEXT_STEP") || value.equals("PROBLEM_SOLVING")) {
-			saveLog("TIS.feedback.TDS", "true");
+			saveLog("TIS.feedback.is.TDS.maleRobot", "true");
 			System.out.println("teeeeeeeesT TDS: true");
 			setTDSfeedback(true);
 		} else {
 			System.out.println("teeeeeeeesT TDS: false");
-			saveLog("TIS.feedback.TDS", "false");
+			saveLog("TIS.feedback.is.TDS.maleRobot", "false");
 			setTDSfeedback(false);
 		}
 
