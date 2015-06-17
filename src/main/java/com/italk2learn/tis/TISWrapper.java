@@ -51,7 +51,7 @@ public class TISWrapper {//implements ITISWrapper {
 	
 	public void startTIS(){
 		startUser = "anonym";
-		analysis = new Analysis(this);
+		analysis = new Analysis(this); 
 		analysis.setStudentModel();
 		timerSpeechTask = new TimerForSpeechCheck();
 		((TimerForSpeechCheck) timerSpeechTask).setAnalysis(analysis);
