@@ -157,6 +157,7 @@ public class TISWrapper {//implements ITISWrapper {
 	public void startNewExercise() {
 		System.out.println(":: startNewExercise ::");
 		analysis.resetVariablesForNewExercise(this);
+		doneButtonPressed = true;
 		if (uploadCheckMathsWordsTimer != null) {
 			uploadCheckMathsWordsTimer.cancel();
 			uploadCheckMathsWordsTimer.purge();
