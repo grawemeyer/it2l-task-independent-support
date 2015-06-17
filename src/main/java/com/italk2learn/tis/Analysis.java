@@ -21,10 +21,16 @@ public class Analysis {
 	private StudentModel student;
 	TISWrapper wrapper;
 	
+	
 	public Analysis(TISWrapper tisWrapper) {
 		wrapper = tisWrapper;
 	}
 
+	public void setStudentModel(){
+		if (student == null) student = new StudentModel();
+	}
+	
+	
 	public void resetVariablesForNewExercise(TISWrapper wrapper){
 		student.setAtTheEnd(false);
 		wrapper.resetMessage();
