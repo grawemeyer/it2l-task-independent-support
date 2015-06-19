@@ -26,6 +26,10 @@ public class Analysis {
 		wrapper = tisWrapper;
 	}
 
+	public StudentModel getStudentModel(){
+		return student;
+	}
+	
 	public void setStudentModel(){
 		if (student == null) student = new StudentModel();
 	}

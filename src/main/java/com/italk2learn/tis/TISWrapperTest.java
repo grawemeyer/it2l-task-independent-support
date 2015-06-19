@@ -14,14 +14,17 @@ public class TISWrapperTest {
 	@Test
 	public void testSendSpeechOutputToSupport() {
 		TISWrapper tis = new TISWrapper();
+		tis.startTIS();	
 		List<String> words = new ArrayList<String>();
 		words.add("test");
-		try {
-			tis.sendSpeechOutputToSupport("student2", words);
-			Assert.assertTrue(true);
-		}
-		catch (Exception e){
-			e.printStackTrace();
-		}
+		tis.sendSpeechOutputToSupport("student2", words);
+	}
+	
+	@Test
+	public void testStartTIS(){
+		TISWrapper tis = new TISWrapper();
+		tis.startTIS();	
+		boolean studentModelIsnotNull = (tis.analysis.getStudentModel() != null);
+		assertTrue(studentModelIsnotNull);
 	}
 }
