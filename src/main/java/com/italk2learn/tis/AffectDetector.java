@@ -9,8 +9,8 @@ public class AffectDetector {
 	private String[] surpriseBag={"wow"};
 	private String[] boredomBag={"bored","boredom", "boring"};
 	
-	private String[] germanFlowBag = {"achja", "genau", "achso", "ja", "hier", "ah", "klar", "OK", "okidoki", "kapier", "kapiert", "einfach", "geschafft", "Spaß", "Kopf", "verstehe", "benutzt"};
-	private String[] germanConfusionBag = {"Hinweis","irritiert","verguckt","verschrieben","verzählt","vertan","tippe","anstrengen","nachdenken","gerechnet","verrechnet","schwieriger","Hilfe","nochmal","erklären","merke","äh", "achso", "wie", "jetzt", "nein", "moment", "weiß", "nicht", "überlegen", "warte", "gar", "nee", "ne","versteh", "nicht", "kapier", "quatsch", "ups", "vergessen", "aufschreiben", "egal", "dünn", "hä", "so", "weg", "fällt", "Problem", "machen", "mach", "macht", "überlege", "rechnen", "wieso", "warum", "was", "falsch"};
+	private String[] germanFlowBag = {"achja", "genau", "achso", "hier", "ah", "klar", "OK", "okidoki", "kapier", "kapiert", "einfach", "geschafft", "Spaß", "Kopf", "verstehe", "benutzt"};
+	private String[] germanConfusionBag = {"Hinweis","irritiert","verguckt","verschrieben","verzählt","vertan","tippe","anstrengen","nachdenken","gerechnet","verrechnet","schwieriger","Hilfe","erklären","merke","äh", "achso", "wie", "jetzt", "nein", "moment", "weiß", "überlegen", "warte", "gar", "nee", "ne","versteh", "kapier", "quatsch", "ups", "vergessen", "aufschreiben", "egal", "dünn", "hä", "weg", "fällt", "Problem", "machen", "mach", "macht", "überlege", "rechnen", "wieso", "warum", "was", "falsch"};
 	private String[] germanFrustrationBag = {"leck", "verarschen", "schitte", "kacke", "Hölle", "fuck", "Gott", "nein", "los","kapier", "weiß", "lange", "her", "pack", "doof", "doofes", "wütend", "nervig", "weglassen", "überspringe", "furchtbar", "nicht", "ach", "kann", "viel","noch","gemein","hasse", "voll","scheiße", "scheiß", "falsch","verdammt", "Pause", "shit", "blöd","boah"};
 	private String[] germanSurpriseBag={"wow"};
 	private String[] germanBoredomBag = {"vertauscht", "hasse", "kenne", "hatten","bla", "noch", "gleiche", "wieder", "nochmal", "gelangweilt", "langweilt", "langweilig"};
