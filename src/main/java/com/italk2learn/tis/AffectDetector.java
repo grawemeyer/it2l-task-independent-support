@@ -9,7 +9,7 @@ public class AffectDetector {
 	private String[] surpriseBag={"wow"};
 	private String[] boredomBag={"bored","boredom", "boring"};
 	
-	private String[] germanFlowBag = {"achja", "genau", "achso", "hier", "ah", "klar", "OK", "okidoki", "kapier", "kapiert", "einfach", "geschafft", "Spaß", "Kopf", "verstehe", "benutzt"};
+	private String[] germanFlowBag = {"achja", "genau", "achso", "hier", "ah", "klar", "OK", "okidoki", "kapier", "kapiert", "einfach", "geschafft", "Spaß", "verstehe"};
 	private String[] germanConfusionBag = {"Hinweis","irritiert","verguckt","verschrieben","verzählt","vertan","tippe","anstrengen","nachdenken","gerechnet","verrechnet","schwieriger","Hilfe","erklären","merke","äh", "achso", "wie", "jetzt", "nein", "moment", "weiß", "überlegen", "warte", "gar", "nee", "ne","versteh", "kapier", "quatsch", "ups", "vergessen", "aufschreiben", "egal", "dünn", "hä", "weg", "fällt", "Problem", "machen", "mach", "macht", "überlege", "rechnen", "wieso", "warum", "was", "falsch"};
 	private String[] germanFrustrationBag = {"leck", "verarschen", "schitte", "kacke", "Hölle", "fuck", "Gott", "nein", "los","kapier", "weiß", "lange", "her", "pack", "doof", "doofes", "wütend", "nervig", "weglassen", "überspringe", "furchtbar", "nicht", "ach", "kann", "viel","noch","gemein","hasse", "voll","scheiße", "scheiß", "falsch","verdammt", "Pause", "shit", "blöd","boah"};
 	private String[] germanSurpriseBag={"wow"};
